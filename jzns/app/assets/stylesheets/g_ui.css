@@ -1,10 +1,10 @@
 ﻿body
 {
 	font-size:15px;	
-	/*background:#A4DCF9;*/
-     MARGIN-TOP: 0px; 
-     MARGIN-LEFT: 0px;
-     MARGIN-RIGHT: 0px;
+	background:#A4DCF9;
+  MARGIN-TOP: 0px; 
+  MARGIN-LEFT: 0px;
+  MARGIN-RIGHT: 0px;
 }
 
 form{margin:0px;display: inline}
@@ -30,19 +30,18 @@ ul
 	width:950px;
 }
 
-.FMainContent 
+.FUMainContent 
 {
 	height:100%; 
-	margin-bottom:20px;
-	background:#F2DEDE;
+	margin-top:20px;
 }
+
 .FFooter 
 { 
+	padding-top:20px;
 	clear:both;
-	font-size:13px;text-align:center;
-	padding-bottom:10px;padding-top:5px;margin-top:10px;
-
 	color:#0078B6;
+	font-size:13px;text-align:center;
 }
 
 

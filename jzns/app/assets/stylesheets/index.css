@@ -3,37 +3,32 @@
 .FHead
 {
 	margin-top:40px;
-	margin-bottom:20px;
 }
 
-.FSidebar 
-{ 
-	float:left; 
-	width:38%; 
+.FMainContent 
+{
 	height:500px; 
+	margin-top:20px;
+}
+
+.FNewForm
+{
+	width:38%;
+	height:100%;
+	float:left;
 	background:#DAF1FD;
 	border-radius: 3px 3px 3px 3px;
 }
 
-.FContent 
-{ 
-	float:right; 
-	width:62%; 
-	height:500px; 
+.FLoginForm
+{
+	width:62%;	
+	height:100%;
+	float:right;
 	background:#FFFFFF;
 }
 
-.FLoginform
-{
-	margin-top:140px;
-	margin-left:80px;
-}
 
-.FNewform
-{
-	margin-top:140px;
-	margin-left:80px;
-}
 
 /*错误信息提示*/
 .FLoginErrNotic

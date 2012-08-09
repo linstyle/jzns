@@ -2,7 +2,63 @@
   <%= render('common/header') %>  <!-- 头部 -->
   
   <div class="FMainContent">
-  	ddd
-  </div>
+  
+    <div class="FNewForm">
+		<%= form_for @user, :url => { :controller => 'welcome', :action => 'create'} do |f| %>
+	
+			<%= f.label :name, "登陆账号(邮箱)" %>
+			</br>
+			<%= f.email_field :name,:class => "txt-ctrl",:length => "50" %> 
+			<%= error_message_on @user, :name,:class=>"PublicNoticAreaRed"%> 
+	 
+	
+			<%= f.label :name, "显示的昵称(不超过10位)" %>
+			</br>
+			<%= f.text_field :nick_name,:class => "txt-ctrl",:length => "50"%>
+			<%= error_message_on @user, :nick_name %>
+	
+	
+			<%= f.label :name, "密码(长度6-15)" %>
+			</br>
+			<%= f.password_field :password,:class => "txt-ctrl",:length => "50"%>
+			<%= error_message_on @user, :password %> 
+	
+			<%= f.label :name, "请再确认下密码" %>
+			</br>
+			<%= f.password_field :password_confirmation,:class => "txt-ctrl",:length => "50"%>
+		    
+		  <%= f.submit "注册" ,:class => "link-btn-dark"%>
+		<% end %>			
+	  </div> <!-- FLoginform -->
+  	
+    <div class="FLoginForm">
+			<%= form_for @user, :url => { :controller => 'welcome', :action => 'login'} do |f| %>			
+		 	<ul>
+			<li>
+				<label for="user_email" >登陆邮箱</label>      
+				<%= f.email_field :name,:class => "txt-ctrl",:length => "25"%>		 		
+			</li>
+		 	
+			<li style="margin-top:10px">
+				<label for="user_password">密码</label>
+				<%= f.password_field :password,:class => "txt-ctrl"%>			 		
+			</li>
+			<li style="margin-top:15px;margin-left:35px">
+				<%= check_box_tag("remember_me_check", value = "1", checked = true, options = {})%> 记住我一周 
+				<%= f.submit "登陆" ,:class => "link-btn-dark"%>			 	
+			</li>
+			<!--
+			<li style="margin-top:15px;margin-left:35px">
+				<%= link_to image_tag("http://static.youku.com/v1.0.0779/partner/img/ico_sina_16x16.png"), '/auth/tsina'%>			 	
+				<%=link_to "新浪微博登录", "/auth/tsina"%>						 	
+			</li>
+			-->
+		  </ul>			
+			<% end %>
+		
+	  </div> <!-- FLoginForm -->
+	  
+  </div><!-- FMainContent -->
+  
   <%= render('common/footer') %>  <!-- 头部 -->	
 </div>
