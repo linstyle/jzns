@@ -1,0 +1,44 @@
+﻿/* 登陆首页CSS */
+
+.FHead
+{
+	margin-top:40px;
+	margin-bottom:20px;
+}
+
+.FSidebar 
+{ 
+	float:left; 
+	width:38%; 
+	height:500px; 
+	background:#DAF1FD;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.FContent 
+{ 
+	float:right; 
+	width:62%; 
+	height:500px; 
+	background:#FFFFFF;
+}
+
+.FLoginform
+{
+	margin-top:140px;
+	margin-left:80px;
+}
+
+.FNewform
+{
+	margin-top:140px;
+	margin-left:80px;
+}
+
+/*错误信息提示*/
+.FLoginErrNotic
+{
+	margin-top:140px;
+  width:80px;
+  height:60px;
+}

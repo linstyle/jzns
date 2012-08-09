@@ -1,0 +1,201 @@
+﻿body
+{
+	font-size:15px;	
+	/*background:#A4DCF9;*/
+     MARGIN-TOP: 0px; 
+     MARGIN-LEFT: 0px;
+     MARGIN-RIGHT: 0px;
+}
+
+form{margin:0px;display: inline}
+
+li 
+{
+	list-style: none;
+	margin:0;padding:0;
+}
+
+ul 
+{
+	padding:0;margin:0;
+}
+
+/*rails 默认的ActionRecord返回错误CSS,覆盖掉*/
+.field_with_errors { display: inline;}
+
+/*共用的框架头部和尾部*/
+.FMain 
+{
+	margin:0 auto;
+	width:950px;
+}
+
+.FMainContent 
+{
+	height:100%; 
+	margin-bottom:20px;
+	background:#F2DEDE;
+}
+.FFooter 
+{ 
+	clear:both;
+	font-size:13px;text-align:center;
+	padding-bottom:10px;padding-top:5px;margin-top:10px;
+
+	color:#0078B6;
+}
+
+
+/*公用的底色*/
+/*红色提示*/
+.PublicNoticAreaRed
+{
+	background:#F2DEDE;
+	border-radius: 3px 3px 3px 3px;
+	padding: 5px 3px;
+	word-wrap:break-word;
+	overflow: hidden;	
+}
+
+/*内容提示*/
+.PublicNoticAreaNews
+{
+	background:#F3F3F3;
+	border-radius: 3px 3px 3px 3px;
+	padding: 5px 3px;
+	word-wrap:break-word;
+	overflow: hidden;	
+}
+
+/*段落排行*/
+.IndexP1
+{
+	line-height: 200%;
+}
+
+/*列表*/
+.ULR1
+{
+	list-style:none;
+}
+.ULR1 li{height:40px;}
+
+.ULR2
+{
+	padding:2px;
+	list-style:none;
+}
+.ULR2 li{height:30px;}
+
+
+/*文本框*/
+.txt-ctrl {
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+    color: #333333;
+    font: 14px/14px "Helvetica Neue",Helvetica,Arial,Sans-serif;
+    padding: 5px 3px;
+}
+
+/*按钮*/
+.link-btn-dark,a.link-btn-dark{
+	background:#51ABDF;color:#ebebeb;padding:4px 10px;font-size:14px;border:1px solid #51ABDF;text-decoration:none;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px
+}
+.link-btn-dark:hover{background:#3C8AE0;cursor:pointer;color:white}
+
+.link-btn-dark{width:75px;height:35px;}#activity-link{background:white;padding:10px;margin:2px}
+/*发布按钮*/
+.link-btn-send,a.link-btn-send{
+	background:#51ABDF;color:#ebebeb;padding:4px 10px;font-size:14px;border:1px solid #51ABDF;text-decoration:none;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px
+}
+.link-btn-send:hover{background:#3C8AE0;cursor:pointer;color:white}
+
+.link-btn-send{width:75px;height:30px;}#activity-link{background:white;padding:10px;margin:2px}
+
+/*灰色按钮*/
+.link-btn-disable,a.link-btn-disable{
+	background:#F8F8F8;color:#C7C7C7;padding:4px 10px;font-size:14px;border:1px solid #C7C7C7;text-decoration:none;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px
+}
+.link-btn-disable:hover{background:#F8F8F8;cursor:pointer;color:#C7C7C7}
+
+.link-btn-disable{width:75px;height:30px;}#activity-link{background:white;padding:10px;margin:2px}
+
+
+/*阴影*/
+.MyShadow{
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
+	-moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
+	-webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
+	box-shadow:2px 2px 10px #909090;/*opera或ie9*/
+	-webkit-border-radius: 4px;
+}
+
+/*超链接
+a:link是超级链接的初始状态
+a:hover是把鼠标放上去时悬停的状况 
+a:active 是鼠标点击时 
+a:visited是访问过后的情况
+*/
+
+a:link  /* 未访问的链接 */
+{
+	text-decoration:none;color:black;
+} 
+
+a:visited /* 已访问的链接 */
+{
+	text-decoration:none;color:black;
+} 
+
+a:hover  /*鼠标放上去*/
+{
+	text-decoration:none;	color:black;
+}
+
+
+.FUserHeader a:link  /* 未访问的链接 */
+{
+	text-decoration:none;color: white;
+} 
+
+.FUserHeader a:visited /* 已访问的链接 */
+{
+	text-decoration:none;color:white;
+} 
+
+.FUserHeader a:hover  /*鼠标放上去*/
+{
+	text-decoration:none;	color:white;
+}
+
+/*li模式*/
+.FList1 li
+{
+	margin-top:20px;
+	padding-bottom:20px;
+	
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;	
+	border-color: #E1E4E5;
+}
+
+
+/*临时头像*/
+.TempHead
+{
+	height:50px;
+	width:50px;
+	margin-right:10px;
+	float:left;
+	background:#BAE2F0;
+};
