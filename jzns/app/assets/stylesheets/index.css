@@ -28,13 +28,23 @@
 	background:#FFFFFF;
 }
 
-
-
 /*错误信息提示*/
-.FLoginErrNotic
+.LabelLoginErr
 {
+  width:140px;
+  height:20px;
+  color:#ff0000;
+}
 
-	margin-left:190px;
-  width:80px;
-  height:60px;
+/*注册错误提示，rails默认*/
+.formError 
+{
+	background:#F2DEDE;
+	border-radius: 3px 3px 3px 3px;
+	padding: 2px 1px;
+	word-wrap:break-word;
+	overflow: hidden;	
+		
+	display: inline;
+	color:#ff0000;
 }
