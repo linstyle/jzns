@@ -22,14 +22,20 @@
 	  		<li>
 	  			<%= link_to '我的关注', :controller => 'welcome', :action => 'logout' %>
 	  		</li>
-								
+
+				<li style="margin-left:510px;">
+					<%= link_to '设置', :controller => 'welcome', :action => 'qiuxian' %>
+				</li>	
+				
+				<li>
+					<%= link_to '关于', :controller => 'welcome', :action => 'qiuxian' %>
+				</li>	
+												
 				<li>
 				  <%= link_to '退出', :controller => 'welcome', :action => 'logout' %>
 				</li>				
 				
-				<li>
-					<%= link_to '关于', :controller => 'welcome', :action => 'qiuxian' %>
-				</li>					
+				
 			</ul>
 	</div> <!-- FUserHeaderList -->
 	

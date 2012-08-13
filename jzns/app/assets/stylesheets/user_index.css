@@ -16,7 +16,7 @@
 .FUserHeaderLogo
 {
 	margin-left:10px;
-	width:165px;
+	width:147px;
 	
 	float:left;
 }
@@ -30,6 +30,7 @@
 
 .FUserMainContent 
 {
+	width:950px;
 	height:100%; 
 	margin-top:50px;
 	background:#00ffff;	
