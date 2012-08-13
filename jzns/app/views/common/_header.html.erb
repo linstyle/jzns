@@ -1,26 +1,43 @@
 <% if session[:user_id] %>
 	<div class="FUserHeader">
 		
-		<div class="FHeaderLogo">
-			<span style="font-size: 21px"><%= link_to 'XXXXXX', :controller => 'users', :action => 'user_index' %></span>		
+		<div class="FUserHeaderLogo">
+			<span style="font-size: 21px"><%= link_to '聚众唠事网', :controller => 'user_index', :action => 'user_index' %></span>		
 		</div>	
 		
-		<ul class="FHeaderList">	
-			<li>
-			  <%= link_to '退出', :controller => 'users', :action => 'logout' %>
-			</li>				
-			
-			<li>
-				<%= link_to '关于', :controller => 'users', :action => 'qiuxian' %>
-			</li>	
-		</ul>
-	</div> <!-- FHeader -->
+		<div class="FUserHeaderList">	
+			<ul>
+				<li>
+					Hi，<%= @user.nick_name %> 大人
+				</li>
+				
+	  		<li>
+	  			<%= link_to '公共事件', :controller => 'welcome', :action => 'logout' %>
+	  		</li>
+	
+	  		<li>
+	  			<%= link_to '个人事件', :controller => 'welcome', :action => 'logout' %>
+	  		</li>
+	  		
+	  		<li>
+	  			<%= link_to '我的关注', :controller => 'welcome', :action => 'logout' %>
+	  		</li>
+								
+				<li>
+				  <%= link_to '退出', :controller => 'welcome', :action => 'logout' %>
+				</li>				
+				
+				<li>
+					<%= link_to '关于', :controller => 'welcome', :action => 'qiuxian' %>
+				</li>					
+			</ul>
+	</div> <!-- FUserHeaderList -->
 	
 	
 <% else %>
 	<div class="FHead">
-	  	<span style="font-size: 24px"><%= link_to 'XXXXXX', :controller => 'users', :action => 'index' %></span>
-	  	<span ><%= link_to '关于', :controller => 'users', :action => 'qiuxian' %>
+	  	<span style="font-size: 24px"><%= link_to '聚众唠事网', :controller => 'welcome', :action => 'index' %></span>
+	  	<span ><%= link_to '关于', :controller => 'welcome', :action => 'qiuxian' %>
 	</div>
 <% end %>
 

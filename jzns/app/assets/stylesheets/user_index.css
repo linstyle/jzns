@@ -1,0 +1,36 @@
+﻿/*用户登录后的CSS*/
+.FUserHeader 
+{
+	z-index: 9998;
+	height: 35px;
+	width: 100%;	
+	left: 0;
+	top: 0;
+	font: 12px/1.125 Arial,Helvetica,sans-serif;
+	position: fixed;
+	background-repeat: repeat-x;
+	background: url(global_bg.png);
+	line-height:33px;
+}
+
+.FUserHeaderLogo
+{
+	margin-left:10px;
+	width:165px;
+	
+	float:left;
+}
+
+.FUserHeaderList li
+{
+  float:left; 
+  margin-left:20px;
+  font-size: 14px;
+}
+
+.FUserMainContent 
+{
+	height:100%; 
+	margin-top:50px;
+	background:#00ffff;	
+}
