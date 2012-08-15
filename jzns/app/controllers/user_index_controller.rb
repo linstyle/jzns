@@ -1,5 +1,5 @@
 class UserIndexController < ApplicationController
-  before_filter :find_user, :only => [:user_index,:common_event,:person_event,:collect_event,:setting,:about]
+  before_filter :find_user, :only => [:user_index,:common_event,:person_event,:follow_event,:setting,:about]
   def find_user
   	@user = User.find_by_id(session[:user_id])
   end  
@@ -15,6 +15,8 @@ class UserIndexController < ApplicationController
   def common_event
   	@select_link=0
   	
+		@events = CommonEvent.page(params[:page]).per(6)  	
+  	
   end
   
   #个人事件
@@ -24,7 +26,7 @@ class UserIndexController < ApplicationController
   end
   
   #我的关注(收藏)
-  def collect_event
+  def follow_event
 		@select_link=2
 		
   end

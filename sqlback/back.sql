@@ -15,6 +15,37 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`jzns` /*!40100 DEFAULT CHARACTER SET ut
 
 USE `jzns`;
 
+/*Table structure for table `common_events` */
+
+DROP TABLE IF EXISTS `common_events`;
+
+CREATE TABLE `common_events` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` char(32) CHARACTER SET utf8 NOT NULL COMMENT '简短描述',
+  `message_count` int(10) DEFAULT '0' COMMENT '信息条数',
+  `lastupdate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `common_events` */
+
+insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (1,'我是1号',10,'2012-08-15 11:08:07');
+insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (2,'我是2号',20,'2012-08-15 11:08:05');
+
+/*Table structure for table `person_events` */
+
+DROP TABLE IF EXISTS `person_events`;
+
+CREATE TABLE `person_events` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` char(32) COLLATE utf8_unicode_ci NOT NULL,
+  `messge_count` int(10) DEFAULT '0',
+  `lastupdate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `person_events` */
+
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
@@ -27,11 +58,12 @@ CREATE TABLE `users` (
   `lastlogin_time` datetime DEFAULT '2012-08-10 00:00:00' COMMENT '最后登录时间',
   `reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '注册(插入)时间',
   PRIMARY KEY (`id`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`lastlogin_time`,`reg_time`) values (1,'lin_style@foxmail.com','$2a$10$lYWxNptRa14NNxlQiYBPRenTdwfZHW2DyAElekawynyQqF3Mrw.Eq','l','2012-08-12 19:54:50','2012-08-12 19:54:50');
+insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`lastlogin_time`,`reg_time`) values (1,'lin_style@foxmail.com','$2a$10$lYWxNptRa14NNxlQiYBPRenTdwfZHW2DyAElekawynyQqF3Mrw.Eq','lindp','2012-08-15 09:23:51','2012-08-15 09:23:51');
+insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`lastlogin_time`,`reg_time`) values (2,'a@a.com','$2a$10$7g7gJb1DJYwrpPXQUfyH2u3SIJKXhLomt8.2eBjcK4GbZfyOIPQyW','a','2012-08-13 09:13:16','2012-08-13 09:13:16');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
