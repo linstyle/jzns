@@ -5,6 +5,7 @@
   <div class="FUserMainContent">
   	<ul class="FLabelEvent">
   	<% @events.each do |event| %>
+  		<%= link_to(:controller => 'user_index', :action => 'click_common_event', :param=>'#{event.id}') do %>	
   		<li>
   			<div class="LabelEvent">  				
   				<div class="LabelEventTitle">
@@ -16,6 +17,7 @@
   				</div>  				
   			</div>  			
   		</li>
+  		<% end %>
   	<% end %>
   	</ul>
   	
