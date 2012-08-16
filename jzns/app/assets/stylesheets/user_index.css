@@ -42,3 +42,29 @@
 	background: #4480A1;
 }
 
+.FLabelEvent li
+{
+	float:left;
+	margin-left:5px;
+	margin-top:5px;
+}
+
+/*内容块标题标签*/
+.LabelEvent
+{
+	width:120px;
+	height:100px;
+	padding:15px;
+	background:#00B7DF;	
+	
+}
+
+.LabelEventTitle
+{
+	height:60px;
+}
+
+.LabelEventAttr
+{
+	margin-top:10px;
+}

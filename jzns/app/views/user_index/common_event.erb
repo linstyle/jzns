@@ -3,7 +3,21 @@
 <div class="FMain">  
 	
   <div class="FUserMainContent">
-  	22  	
+  	<ul class="FLabelEvent">
+  	<% @events.each do |event| %>
+  		<li>
+  			<div class="LabelEvent">  				
+  				<div class="LabelEventTitle">
+  					<%= event.title	%>	
+  				</div>
+  				
+  				<div class="LabelEventAttr">
+  					信息数:<%= event.message_count%>条	
+  				</div>  				
+  			</div>  			
+  		</li>
+  	<% end %>
+  	</ul>
   	
 	<!-- 翻页 -->
 	<div align="center">

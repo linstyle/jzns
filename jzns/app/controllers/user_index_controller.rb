@@ -15,7 +15,9 @@ class UserIndexController < ApplicationController
   def common_event
   	@select_link=0
   	
-		@events = CommonEvent.page(params[:page]).per(6)  	
+		@events = CommonEvent.order('id desc').page(params[:page]).per(30)  	
+		
+		
   	
   end
   
@@ -41,6 +43,11 @@ class UserIndexController < ApplicationController
   def about
 		@select_link=4
 		  
+  end
+  
+  #点选事件链接
+  def click_common_event(id)
+  	
   end
   
   
