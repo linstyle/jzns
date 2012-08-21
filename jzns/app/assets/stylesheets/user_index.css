@@ -1,4 +1,6 @@
 ﻿/*用户登录后的CSS*/
+
+/*头部条*/
 .FUserHeader 
 {
 	z-index: 9998;
@@ -42,6 +44,7 @@
 	background: #4480A1;
 }
 
+/*公共事件内容块显示*/
 .FLabelEvent li
 {
 	float:left;
@@ -49,7 +52,6 @@
 	margin-top:5px;
 }
 
-/*内容块标题标签*/
 .LabelEvent
 {
 	width:120px;
@@ -67,4 +69,11 @@
 .LabelEventAttr
 {
 	margin-top:10px;
+}
+
+/*点击事件显示的内容*/
+.FunctionOperate
+{
+	margin-top:20px;	
+	background:#ff0000;		
 }
