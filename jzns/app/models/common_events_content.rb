@@ -1,7 +1,8 @@
+#encoding:utf-8
 class CommonEventsContent < ActiveRecord::Base
 	belongs_to :CommonEvent, :foreign_key => "event_id"
 
 	#content
-	validates_presence_of :content, :message => "·¢ËÍÄÚÈİ²»ÄÜÎª¿Õ"
-	validates_length_of :content, :maximum => 140, :message => "ÄÚÈİ²»ÄÜ³¬¹ı140¸ö×Ö"
+	validates_presence_of :content, :message => "å‘é€å†…å®¹ä¸èƒ½ä¸ºç©º"
+	validates_length_of :content, :maximum => 140, :message => "å†…å®¹ä¸èƒ½è¶…è¿‡140ä¸ªå­—"
 end

@@ -36,7 +36,6 @@
 	width:950px;
 	height:100%; 
 	margin-top:50px;
-	background:#00ffff;	
 }
 
 .HeaderLinkSelect
@@ -71,9 +70,10 @@
 	margin-top:10px;
 }
 
-/*点击事件显示的内容*/
-.FunctionOperate
+/*点击事件显示的内容页面*/
+
+.EventContentShowMessage
 {
 	margin-top:20px;	
-	background:#ff0000;		
+	background:#00ff00;	
 }
