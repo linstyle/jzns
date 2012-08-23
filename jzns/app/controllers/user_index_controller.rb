@@ -26,7 +26,9 @@ class UserIndexController < ApplicationController
   	
   	
   	#判断是否已关注该内容
-  	@is_follow = CommonEventsFollow.where(["user_id=? and common_event_id=?", @user.id, @event_id]).limit(1)
+  	@is_follow = CommonEventsFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
+  	
+  #	@messages = CommonEventsContent.where(["event_id=?", @event_id]).page(params[:page]).per(10)
   	  	
   end  
        
@@ -41,13 +43,15 @@ class UserIndexController < ApplicationController
   def follow_event
 		@select_link=2
 		
+	#	@events = CommonEventsFollow.joins(:CommonEvent).select('id title,message_count').order('id desc').page(params[:page]).per(30)		
+		@events = CommonEvent.joins(:common_events_follows).select('id,title,message_count').order('id desc').page(params[:page]).per(30)	
   end
   
   #关注公共事件
   def follow_common_event_add
   	common_events_follow = CommonEventsFollow.new
   	common_events_follow.user_id = @user.id
-  	common_events_follow.common_event_id = params[:id]  
+  	common_events_follow.event_id = params[:id]  
 
  	
 		if !common_events_follow.save
@@ -59,7 +63,8 @@ class UserIndexController < ApplicationController
   
   def follow_common_event_cancel
   	event_id = params[:id]
-   	CommonEventsFollow.delete(["user_id=? and common_event_id=?", @user.id, event_id])
+   	CommonEventsFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
+
    	redirect_to(:action => "common_event_content", :id=>params[:id])
   end
   
@@ -73,6 +78,19 @@ class UserIndexController < ApplicationController
   def about
 		@select_link=4
 		  
+  end
+  
+  #link_退出
+  def logout  	
+  	reset_session
+ 
+ 		if '1'==cookies[:remeber_me_check] 
+ 			cookies.delete :remeber_me_check
+ 			cookies.delete :remember_me_id
+ 			cookies.delete :remember_me_code
+ 	  end
+
+  	redirect_to(:controller=>"welcome",:action => "index")
   end
   
 

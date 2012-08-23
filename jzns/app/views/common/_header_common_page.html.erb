@@ -4,7 +4,7 @@
 			<ul>
 				<li style="margin-left:0px">
 					<% if @is_follow.size!=0 %>
-						<%= link_to('取消关注',:controller => 'user_index', :action => 'follow_common_event_add', :id=>"#{@event_id}") %>					
+						<%= link_to('取消关注',:controller => 'user_index', :action => 'follow_common_event_cancel', :id=>"#{@event_id}") %>					
 					<% else %>
   					<%= link_to('关注此事件',:controller => 'user_index', :action => 'follow_common_event_add', :id=>"#{@event_id}") %>				
 					<% end %>
