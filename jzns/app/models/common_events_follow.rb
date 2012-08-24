@@ -1,3 +1,3 @@
 class CommonEventsFollow < ActiveRecord::Base
-		belongs_to :common_events, :foreign_key => "user_id"
+		belongs_to :CommonEvent
 end

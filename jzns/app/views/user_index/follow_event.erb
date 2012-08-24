@@ -3,23 +3,7 @@
 <div class="FMain">  
 	
   <div class="FUserMainContent">
-  	<ul class="FLabelEvent">
-  	<% @events.each do |event| %>
-  		<%= link_to({:controller => 'user_index', :action => 'common_event_content', :id=>event}, :target=> "_blank") do %>	  			
-  		<li>
-  			<div class="LabelEvent">  				
-  				<div class="LabelEventTitle">
-  					<%= event.title	%>	
-  				</div>
-  				
-  				<div class="LabelEventAttr">
-  					信息数:<%= event.message_count%>条	
-  				</div>  				
-  			</div>  			
-  		</li>
-  		<% end %>
-  	<% end %>
-  	</ul>
+  	<%= render('common/event_show') %>  <!-- 内容显示块 -->
   	
 		<!-- 翻页 -->
 		<div align="center">

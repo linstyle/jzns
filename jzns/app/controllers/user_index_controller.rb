@@ -28,7 +28,7 @@ class UserIndexController < ApplicationController
   	#判断是否已关注该内容
   	@is_follow = CommonEventsFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
   	
-  #	@messages = CommonEventsContent.where(["event_id=?", @event_id]).page(params[:page]).per(10)
+  	@messages = CommonEventsContent.where(["event_id=?", @event_id]).page(params[:page]).per(10)
   	  	
   end  
        
@@ -42,9 +42,8 @@ class UserIndexController < ApplicationController
   #我的关注(收藏)
   def follow_event
 		@select_link=2
-		
-	#	@events = CommonEventsFollow.joins(:CommonEvent).select('id title,message_count').order('id desc').page(params[:page]).per(30)		
-		@events = CommonEvent.joins(:common_events_follows).select('id,title,message_count').order('id desc').page(params[:page]).per(30)	
+	
+		@events = CommonEvent.joins(:CommonEventsFollows).select('id,title,message_count').order('id desc').where(["`common_events_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	
   end
   
   #关注公共事件
@@ -61,6 +60,7 @@ class UserIndexController < ApplicationController
 	  redirect_to(:action => "common_event_content", :id=>params[:id])
   end
   
+  #取消关注公共事件
   def follow_common_event_cancel
   	event_id = params[:id]
    	CommonEventsFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
