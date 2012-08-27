@@ -1,3 +1,4 @@
+#encoding:utf-8
 class UserIndexController < ApplicationController
   before_filter :find_user, :only => [:common_event,:common_event_content,:person_event,:follow_event,:follow_common_event_add,:follow_common_event_cancel,:setting,:about]
   
@@ -8,12 +9,12 @@ class UserIndexController < ApplicationController
     end
   end  
   
-  ##ÓÃ»§Ê×Ò³uiÌø×ª
+  ##ç”¨æˆ·é¦–é¡µuiè·³è½¬
   def user_index
   	redirect_to(:controller=>"user_index",:action => "common_event")
   end
   
-  #¹«¹²ÊÂ¼ş
+  #å…¬å…±äº‹ä»¶
   def common_event
   	@select_link=0
   	
@@ -26,7 +27,7 @@ class UserIndexController < ApplicationController
   	@event_contents = CommonEventsContent.where(:event_id=>event_id)
   	
   	
-  	#ÅĞ¶ÏÊÇ·ñÒÑ¹Ø×¢¸ÃÄÚÈİ
+  	#åˆ¤æ–­æ˜¯å¦å·²å…³æ³¨è¯¥å†…å®¹
   	@is_follow = CommonEventsFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
   	
   	@messages = CommonEventsContent.where(["event_id=?", @event_id]).page(params[:page]).per(10)
@@ -34,20 +35,20 @@ class UserIndexController < ApplicationController
   end  
        
   
-  #¸öÈËÊÂ¼ş
+  #ä¸ªäººäº‹ä»¶
   def person_event
   	@select_link=1
   	
   end
   
-  #ÎÒµÄ¹Ø×¢(ÊÕ²Ø)
+  #æˆ‘çš„å…³æ³¨(æ”¶è—)
   def follow_event
 		@select_link=2
 	
 		@events = CommonEvent.joins(:CommonEventsFollows).select('id,title,message_count').order('id desc').where(["`common_events_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	
   end
   
-  #¹Ø×¢¹«¹²ÊÂ¼ş
+  #å…³æ³¨å…¬å…±äº‹ä»¶
   def follow_common_event_add
   	common_events_follow = CommonEventsFollow.new
   	common_events_follow.user_id = @user.id
@@ -61,7 +62,7 @@ class UserIndexController < ApplicationController
 	  redirect_to(:action => "common_event_content", :id=>params[:id])
   end
   
-  #È¡Ïû¹Ø×¢¹«¹²ÊÂ¼ş
+  #å–æ¶ˆå…³æ³¨å…¬å…±äº‹ä»¶
   def follow_common_event_cancel
   	event_id = params[:id]
    	CommonEventsFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
@@ -69,34 +70,34 @@ class UserIndexController < ApplicationController
    	redirect_to(:action => "common_event_content", event_id)
   end
   
-  @new_event_content = CommonEventsContent.new
-  #ÏûÏ¢·¢ËÍ.¹«¹²
+  
+  #æ¶ˆæ¯å‘é€.å…¬å…±
   def send_common_content
     event_id = params[:id]
   	new_common_content = CommonEventsContent.new(params[:message])
   	
 	  if new_common_content.save
-	  		flash[:notice] = "ÏûÏ¢³É¹¦·¢ËÍ"
+	  	flash[:notice] = "æ¶ˆæ¯æˆåŠŸå‘é€"
 	  else
-	    flash[:notice] = "ÏûÏ¢·¢ËÍÊ§°Ü,²é¿´ÄÚÈİÊÇ·ñ"
+	    flash[:notice] = "æ¶ˆæ¯å‘é€å¤±è´¥,æŸ¥çœ‹å†…å®¹æ˜¯å¦"
 	  end
 
 	 	redirect_to(:action => "common_event_content", :id=>params[:id]) 	
   end
   
-  #ÉèÖÃ
+  #è®¾ç½®
   def setting
 		@select_link=3
 		  
   end
   
-  #¹ØÓÚ
+  #å…³äº
   def about
 		@select_link=4
 		  
   end
   
-  #link_ÍË³ö
+  #link_é€€å‡º
   def logout  	
   	reset_session
  
@@ -108,8 +109,5 @@ class UserIndexController < ApplicationController
 
   	redirect_to(:controller=>"welcome",:action => "index")
   end
-  
 
-  
-  
 end
