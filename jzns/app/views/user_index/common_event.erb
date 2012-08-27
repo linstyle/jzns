@@ -1,15 +1,13 @@
 <%= render('common/header') %>  <!-- 头部 -->
 
 <div class="FMain">  
-	
-  <div class="FUserMainContent">
-		<%= render('common/event_show') %>  <!-- 内容显示块 -->	
+
+	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
   	
-		<!-- 翻页 -->
-		<div align="center">
-			<%= paginate @events %>
-		</div>    	
-  </div><!--FUserMainContent-->
+	<!-- 翻页 -->
+	<div align="center">
+		<%= paginate @events %>
+	</div>    	
   
 </div>
 

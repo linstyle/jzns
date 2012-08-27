@@ -21,15 +21,16 @@ class UserIndexController < ApplicationController
   end
   
   def common_event_content
-  	@event_id = params[:id]
-  	@event_contents = CommonEventsContent.where(:event_id=>@event_id)
+  	event_id = params[:id]
+  	@new_event_content = CommonEventsContent.new
+  	@event_contents = CommonEventsContent.where(:event_id=>event_id)
   	
   	
   	#判断是否已关注该内容
   	@is_follow = CommonEventsFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
   	
   	@messages = CommonEventsContent.where(["event_id=?", @event_id]).page(params[:page]).per(10)
-  	  	
+
   end  
        
   
@@ -65,7 +66,22 @@ class UserIndexController < ApplicationController
   	event_id = params[:id]
    	CommonEventsFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
 
-   	redirect_to(:action => "common_event_content", :id=>params[:id])
+   	redirect_to(:action => "common_event_content", event_id)
+  end
+  
+  @new_event_content = CommonEventsContent.new
+  #消息发送.公共
+  def send_common_content
+    event_id = params[:id]
+  	new_common_content = CommonEventsContent.new(params[:message])
+  	
+	  if new_common_content.save
+	  		flash[:notice] = "消息成功发送"
+	  else
+	    flash[:notice] = "消息发送失败,查看内容是否"
+	  end
+
+	 	redirect_to(:action => "common_event_content", :id=>params[:id]) 	
   end
   
   #设置

@@ -1,32 +1,76 @@
+<script language="javascript">   
+/*输入框的内容长度变化提示*/
+function CheckInputContentLength(Edit, maxlen) 
+{
+	
+	if (Edit.value.length > maxlen) 
+	{
+		document.getElementById('send_button').disabled=true
+		document.getElementById('send_button').className="link-btn-disable"
+		document.getElementById('content_notic').innerHTML = "已经超出";
+		
+		document.getElementById('content_remaining').innerHTML = Edit.value.length-100;
+	}
+	else
+	{
+		document.getElementById('send_button').disabled=false
+		document.getElementById('send_button').className="link-btn-send";
+		document.getElementById('content_notic').innerHTML = "还可输入";
+		document.getElementById('content_remaining').innerHTML = maxlen-Edit.value.length;
+	}
+}
+
+</script> 
+
+
 <%= render('common/header_common_page') %>  <!-- 头部 -->
 
-<div class="FMain">  
-	
-  <div class="FUserMainContent">
-	
+<div class="FMain">  	
 	<!-- 内容显示 -->
-	<div class="LabelMessage">
-		<div class="LabelMHead">
+	<div class="FUserMessageContent">
+		<!-- 输入内容框 -->		
+	  <%= form_for @new_event_content, :url => { :controller => 'user_index', :action => 'send_common_content'} do |f| %>
+			<div style="display:inline;">				
+				<%= f.submit "发布" ,:class => "link-btn-disable",:id=>"send_button",:style=>"display:inline;"%>				
+			</div>
+			<span id="content_notic">还可输入</span>
+			<span id="content_remaining" style="font-weight:bold">160</span>字
+			<br/>
 			
-		</div>
+			<%= f.text_area :content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 160);",:onkeyup=>"CheckInputContentLength(this, 160);"%>
+		<% end %>
 		
-		<div class="LabelMContent">
-			
-		</div>
-		
-		<div class="LabelAttr">
-
-		</div>				
+		<!-- 成功或错误提示 -->
+	  <% if flash[:notice] %>
+			<div class="SendContentNotic PublicNoticAreaRed">
+		  	<font color=#B94A48><%= flash[:notice] %></font>	  	
+		  </div>
+	  <% end %>
+	  	
+		<div class="LabelMessage">
+			<div class="LabelMHead">
 				
+			</div>
+			
+			<div class="LabelMContent">
+				11111
+				
+				<div class="LabelAttr">
+					22222
+				</div>
+			</div>
+			
+				
+					
+		</div>
+	  	
+		<!-- 翻页 -->
+		<div align="center">
+			<%= paginate @messages %>
+		</div>
+	
 	</div>
-  	
-	<!-- 翻页 -->
-	<div align="center">
-		<%= paginate @messages %>
-	</div>  
-
-  </div><!--FUserMainContent-->
-  
+	  
 </div>
 
 <%= render('common/footer') %>  <!-- 尾部 -->

@@ -30,14 +30,6 @@
   font-size: 14px;
 }
 
-
-.FUserMainContent 
-{
-	width:950px;
-	height:100%; 
-	margin-top:50px;
-}
-
 .HeaderLinkSelect
 {
 	background: #4480A1;
@@ -71,6 +63,13 @@
 }
 
 /*点击事件显示的内容页面*/
+.FUserMessageContent 
+{
+	padding-left:100px;
+	width:850px;
+	height:100%; 
+}
+
 .LabelMessage
 {
 	margin-top:20px;
@@ -87,12 +86,14 @@
 
 .LabelMContent
 {
-	float:right;
+	width:560px;
+	float:left;
+	margin-left:20px;
 	background:#0000ff;	
 }
 
 .LabelAttr
 {
-	float:right;
+	margin-top:10px;
 	background:#00ffff;		
 }
