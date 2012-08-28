@@ -52,7 +52,8 @@ ul
 {
 	background:#F2DEDE;
 	border-radius: 3px 3px 3px 3px;
-	padding: 5px 3px;
+	padding-top:5px;
+	padding-bottom:3px;
 	word-wrap:break-word;
 	overflow: hidden;	
 }

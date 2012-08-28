@@ -65,13 +65,14 @@
 /*点击事件显示的内容页面*/
 .FUserMessageContent 
 {
-	padding-left:100px;
-	width:850px;
+	width:630px;
 	height:100%; 
+	margin-left:100px;
 }
 
 .LabelMessage
 {
+	width:100%;
 	margin-top:20px;
 	background:#ff0000;	
 }
@@ -96,4 +97,10 @@
 {
 	margin-top:10px;
 	background:#00ffff;		
+}
+
+.LabelSendMsgResult
+{
+	width:100%;
+	text-align:center;
 }
