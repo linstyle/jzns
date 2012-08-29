@@ -50,23 +50,23 @@ function CheckInputContentLength(Edit, maxlen)
 		  </div>
 	  <% end %>
 	  
-	  <ul>
+	  <ul class="FList1">
 	  	<% @event_contents.each do |event_content| %>	
 	  	<li>
-				<div class="LabelMessage">
-					<div class="LabelMHead">
-						
-					</div>
+				<div class="LabelMHead">
+
+				</div>
 					
-					<div class="LabelMContent">
-						<%=  event_content.content%>
+				<div class="LabelMContent">
+					<%=  event_content.content%>
 						
-						<div class="LabelAttr">
-							<%= event_content.insert_time.strftime("%D %R") %>
-						</div>
+					<div class="LabelAttr">
+						<%= event_content.insert_time.strftime("%D %R") %>
 					</div>
 				</div>
-				  		
+				
+				<div style="clear:both"></div>
+				 		
 	  	</li>
 	  	<% end %>
 	  </ul>

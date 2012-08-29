@@ -22,15 +22,15 @@ class UserIndexController < ApplicationController
   end
   
   def common_event_content
-  	event_id = params[:id]
+  	@event_id = params[:id]
   	@new_event_content = CommonEventsContent.new
-  	@event_contents = CommonEventsContent.where(:event_id=>event_id)
+  	@event_contents = CommonEventsContent.where(:event_id=>@event_id)
   	
   	
   	#判断是否已关注该内容
   	@is_follow = CommonEventsFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
   	
-  	@messages = CommonEventsContent.where(["event_id=?", @event_id]).page(params[:page]).per(10)
+  	@messages = CommonEventsContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
 
   end  
        
@@ -53,7 +53,6 @@ class UserIndexController < ApplicationController
   	common_events_follow = CommonEventsFollow.new
   	common_events_follow.user_id = @user.id
   	common_events_follow.event_id = params[:id]  
-
  	
 		if !common_events_follow.save
 		  logger.error("Err, follow_common_event save failed,userid=#{@user.id}") 
@@ -79,12 +78,17 @@ class UserIndexController < ApplicationController
   	new_common_content.event_id = event_id
 
 	  if new_common_content.save
-	  	flash[:notice] = "消息成功发送"	  	
+	  	flash[:notice] = "消息成功发送"
+	  	event = CommonEvent.find(event_id)	  	
+	  	event.IncMsgCount if event
+	  	if !event.save
+	  		logger.error("Err, send_common_content:event.msgcount save failed,userid=#{@user.id},eventid=#{event_id}") 	
+	    end	  	
 	  else
 	    flash[:notice] = "消息发送失败,查看内容是否为空"
 	  end
 	  
-	  redirect_to(:action => "common_event_content", :id=>params[:id])
+	  redirect_to(:action => "common_event_content", :id=>event_id)
 	 	 
   end
   
