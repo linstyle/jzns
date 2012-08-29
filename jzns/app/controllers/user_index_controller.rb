@@ -1,6 +1,6 @@
 #encoding:utf-8
 class UserIndexController < ApplicationController
-  before_filter :find_user, :only => [:common_event,:common_event_content,:person_event,:follow_event,:follow_common_event_add,:follow_common_event_cancel,:setting,:about]
+  before_filter :find_user, :only => [:common_event,:common_event_content,:send_common_content, :person_event,:follow_event,:follow_common_event_add,:follow_common_event_cancel,:setting,:about]
   
   def find_user
   	@user = User.find_by_id(session[:user_id])
@@ -76,6 +76,8 @@ class UserIndexController < ApplicationController
   	new_common_content = CommonEventsContent.new(params[:common_events_content])
   	
   	new_common_content.event_id = event_id
+  	new_common_content.user_id = @user.id
+  	new_common_content.user_nickname = @user.nick_name
 
 	  if new_common_content.save
 	  	flash[:notice] = "消息成功发送"
