@@ -17,6 +17,7 @@ module Jzns
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -59,6 +60,8 @@ module Jzns
 		config.time_zone = 'Beijing'
 		config.active_record.default_timezone = :local
 		config.active_record.time_zone_aware_attributes = false # this is important!
+		
+		
 		
 		# config.autoload_paths += %W(#{config.root}/lib)    
   end

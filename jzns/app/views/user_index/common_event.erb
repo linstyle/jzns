@@ -1,9 +1,24 @@
 <%= render('common/header') %>  <!-- 头部 -->
 
 <div class="FMain">  
-
+	<ul class="FLabelEvent">
+		<li>
+			<% if @user.id=DataTemplate::ADMIN_ID %>
+			<div class="LabelEvent">  				
+				<div class="LabelEventTitle">
+					创建事件
+				</div>
+  				
+				<div class="LabelEventAttr">
+						
+			  </div>
+			</div> 			
+			<% end %>
+		</li>
+	</ul>
+	
 	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
-  	
+	  	
 	<!-- 翻页 -->
 	<div align="center">
 		<%= paginate @events %>

@@ -24,13 +24,12 @@ class UserIndexController < ApplicationController
   def common_event_content
   	@event_id = params[:id]
   	@new_event_content = CommonEventsContent.new
-  	@event_contents = CommonEventsContent.where(:event_id=>@event_id)
   	
   	
   	#判断是否已关注该内容
   	@is_follow = CommonEventsFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
   	
-  	@messages = CommonEventsContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
+  	@event_contents = CommonEventsContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
 
   end  
        
