@@ -17,10 +17,12 @@ class UserIndexController < ApplicationController
   #公共事件
   def common_event
   	@select_link=0
+  	@new_common_event = CommonEvent.new
   	
 		@events = CommonEvent.order('id desc').page(params[:page]).per(30)				  	
   end
   
+  #公共事件具体的内容
   def common_event_content
   	@event_id = params[:id]
   	@new_event_content = CommonEventsContent.new
@@ -33,20 +35,6 @@ class UserIndexController < ApplicationController
 
   end  
        
-  
-  #个人事件
-  def person_event
-  	@select_link=1
-  	
-  end
-  
-  #我的关注(收藏)
-  def follow_event
-		@select_link=2
-	
-		@events = CommonEvent.joins(:CommonEventsFollows).select('id,title,message_count').order('id desc').where(["`common_events_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	
-  end
-  
   #关注公共事件
   def follow_common_event_add
   	common_events_follow = CommonEventsFollow.new
@@ -68,8 +56,7 @@ class UserIndexController < ApplicationController
    	redirect_to(:action => "common_event_content", :id=>event_id)
   end
   
-  
-  #消息发送.公共
+  #消息发送.公共事件
   def send_common_content
     event_id = params[:id]
   	new_common_content = CommonEventsContent.new(params[:common_events_content])
@@ -91,7 +78,22 @@ class UserIndexController < ApplicationController
 	  
 	  redirect_to(:action => "common_event_content", :id=>event_id)
 	 	 
+  end      
+  
+  #个人事件
+  def person_event
+  	@select_link=1
+  	
   end
+  
+  #我的关注(收藏)
+  def follow_event
+		@select_link=2
+	
+		@events = CommonEvent.joins(:CommonEventsFollows).select('id,title,message_count').order('id desc').where(["`common_events_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	
+  end
+
+
   
   #设置
   def setting
