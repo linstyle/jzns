@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommonEventsContentTest < ActiveSupport::TestCase
+class CommonEventFollowTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

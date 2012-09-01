@@ -1,6 +1,6 @@
 #encoding:utf-8
 class CommonEvent < ActiveRecord::Base
-	has_many :CommonEventsFollows, :foreign_key => "event_id"
+	has_many :CommonEventFollow, :foreign_key => "event_id"
 	
 	#content
 	validates_presence_of :title, :message => "标题内容不能为空"

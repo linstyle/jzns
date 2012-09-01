@@ -25,19 +25,18 @@ class UserIndexController < ApplicationController
   #公共事件具体的内容
   def common_event_content
   	@event_id = params[:id]
-  	@new_event_content = CommonEventsContent.new
-  	
-  	
+  	@new_event_content = CommonEventContent.new
+		  	
   	#判断是否已关注该内容
-  	@is_follow = CommonEventsFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
+  	@is_follow = CommonEventFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
   	
-  	@event_contents = CommonEventsContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
+  	@event_contents = CommonEventContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
 
   end  
        
   #关注公共事件
   def follow_common_event_add
-  	common_events_follow = CommonEventsFollow.new
+  	common_events_follow = CommonEventFollow.new
   	common_events_follow.user_id = @user.id
   	common_events_follow.event_id = params[:id]  
  	
@@ -51,7 +50,7 @@ class UserIndexController < ApplicationController
   #取消关注公共事件
   def follow_common_event_cancel
   	event_id = params[:id]
-   	CommonEventsFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
+   	CommonEventFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
 
    	redirect_to(:action => "common_event_content", :id=>event_id)
   end
@@ -59,7 +58,7 @@ class UserIndexController < ApplicationController
   #消息发送.公共事件
   def send_common_content
     event_id = params[:id]
-  	new_common_content = CommonEventsContent.new(params[:common_events_content])
+  	new_common_content = CommonEventContent.new(params[:common_events_content])
   	
   	new_common_content.event_id = event_id
   	new_common_content.user_id = @user.id
@@ -90,7 +89,7 @@ class UserIndexController < ApplicationController
   def follow_event
 		@select_link=2
 	
-		@events = CommonEvent.joins(:CommonEventsFollows).select('id,title,message_count').order('id desc').where(["`common_events_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	
+		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	
   end
 
 
