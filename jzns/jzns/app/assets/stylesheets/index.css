@@ -1,0 +1,50 @@
+﻿/* 登陆首页CSS */
+
+.FHead
+{
+	margin-top:40px;
+}
+
+.FMainContent 
+{
+	height:550px; 
+	margin-top:20px;
+}
+
+.FNewForm
+{
+	width:38%;
+	height:100%;
+	float:left;
+	background:#DAF1FD;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.FLoginForm
+{
+	width:62%;	
+	height:100%;
+	float:right;
+	background:#FFFFFF;
+}
+
+/*错误信息提示*/
+.LabelLoginErr
+{
+  width:140px;
+  height:20px;
+  color:#ff0000;
+}
+
+/*注册错误提示，rails默认*/
+.formError 
+{
+	background:#F2DEDE;
+	border-radius: 3px 3px 3px 3px;
+	padding: 2px 1px;
+	word-wrap:break-word;
+	overflow: hidden;	
+		
+	display: inline;
+	color:#ff0000;
+}

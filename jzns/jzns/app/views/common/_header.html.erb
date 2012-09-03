@@ -1,0 +1,70 @@
+<% if session[:user_id] %>
+	<div class="FUserHeader">		
+		<div class="FUserHeaderList">	
+			<ul>	  	
+				<%= link_to(:controller => 'user_index', :action => 'common_event') do %>			  		
+			  	<% if 0==@select_link %>
+			  		<li style="margin-left:0px" class="HeaderLinkSelect">
+	  					公共事件
+	  			<% else %>
+	  				<li style="margin-left:0px">
+	  					公共事件
+	  			<% end %>
+	  				</li>		  
+				<% end %>
+
+ 		
+	  		
+				<%= link_to(:controller => 'user_index', :action => 'follow_event') do %>		
+	  			<% if 2==@select_link %>
+	  				<li class="HeaderLinkSelect">						  			
+	  					我的关注
+	  			<% else %>
+	  				<li>
+	  					我的关注
+	  			<% end %>
+	  				</li>		  
+				<% end %>	
+	  		  		
+				<li>
+					Hi,<%= @user.nick_name %> 大人.聚众唠事网恭迎您!
+				</li>	  							
+
+				<%= link_to(:controller => 'user_index', :action => 'setting') do %>		
+	  			<% if 3==@select_link %>
+	  				<li style="float:right;" class="HeaderLinkSelect">						  			
+	  					设置
+	  			<% else %>
+	  				<li style="float:right;">
+	  					设置
+	  			<% end %>
+	  				</li>		  
+				<% end %>		
+				
+				<%= link_to(:controller => 'user_index', :action => 'about') do %>		
+	  			<% if 4==@select_link %>
+	  				<li style="float:right;" class="HeaderLinkSelect">						  			
+	  					关于
+	  			<% else %>
+	  				<li style="float:right;">
+	  					关于
+	  			<% end %>
+	  				</li>		  
+				<% end %>						
+												
+				<li style="float:right;">
+				  <%= link_to '退出', :controller => 'welcome', :action => 'logout' %>
+				</li>				
+				
+				
+			</ul>
+	  </div> <!-- FUserHeaderList -->
+	</div> <!-- FUserHeader -->	
+	
+<% else %>
+	<div class="FHead">
+	  	<span style="font-size: 24px"><%= link_to '聚众唠事网', :controller => 'welcome', :action => 'index' %></span>
+	  	<span ><%= link_to '关于', :controller => 'welcome', :action => 'qiuxian' %>
+	</div>
+<% end %>
+

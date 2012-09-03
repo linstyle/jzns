@@ -1,0 +1,93 @@
+<script language="javascript">   
+function ShowCreateEventDiag()
+{ 
+	var diag=document.getElementById('DPopDiag'); 
+	var shade=document.getElementById('DPopDiagShade'); 
+	diag.style.display='block'; 
+	shade.style.display='block'; 
+} 
+
+function HideCreateEventDiag()
+{ 
+	var diag=document.getElementById('DPopDiag'); 
+	var shade=document.getElementById('DPopDiagShade'); 
+	diag.style.display='none'; 
+	shade.style.display='none'; 
+} 
+
+
+/*输入框的内容长度变化提示*/
+function CheckInputContentLength(Edit, maxlen) 
+{
+	
+	if (Edit.value.length > maxlen) 
+	{
+		document.getElementById('send_button').disabled=true
+		document.getElementById('send_button').className="link-btn-disable"
+		document.getElementById('content_notic').innerHTML = "已经超出";
+		
+		document.getElementById('content_remaining').innerHTML = Edit.value.length-15;
+	}
+	else
+	{
+		document.getElementById('send_button').disabled=false
+		document.getElementById('send_button').className="link-btn-send";
+		document.getElementById('content_notic').innerHTML = "还可输入";
+		document.getElementById('content_remaining').innerHTML = maxlen-Edit.value.length;
+	}
+}
+
+</script> 
+
+
+<%= render('common/header') %>  <!-- 头部 -->
+
+<div class="FMain">  
+	<ul class="FLabelEvent">
+		<li>			
+			<% if @user.id=DataTemplate::ADMIN_ID %>
+			<a href="javascript:void(0)" onclick="ShowCreateEventDiag()"> 
+			<div class="LabelEvent">  				
+				<div class="LabelEventTitle">
+					创建事件
+				</div>
+  				
+				<div class="LabelEventAttr">
+						
+			  </div>
+			</div>
+			</a>
+			<% end %>
+		</li>
+	</ul>
+	
+	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
+	  	
+	<!-- 翻页 -->
+	<div align="center">
+		<%= paginate @events %>
+	</div>
+	
+	<div id="DPopDiag" class="LabelPopDiag"> 
+		<div class="LabelPopDiagCloseButton"><a href="javascript:void(0)" onclick="HideCreateEventDiag()"> 关闭</a></div> 
+		  <%= form_for @new_common_event, :url => { :controller => 'manager', :action => 'create_common_event', :id=>"#{@event_id}"} do |f| %>
+		  	请输入事件标题:
+				<span id="content_notic">还可输入</span>
+				<span id="content_remaining" style="font-weight:bold">15</span>字
+				<br/>
+				
+				<div style="margin-left:-2px">
+					<%= f.text_area :title, :size => "40x4",:onkeydown=>"CheckInputContentLength(this, 15);",:onkeyup=>"CheckInputContentLength(this, 15);"%>
+				</div>
+				
+				<div style="display:inline;float:right;">				
+					<%= f.submit "创建" ,:disabled=>true,:class => "link-btn-disable",:id=>"send_button",:style=>"display:inline;"%>				
+				</div>				
+			<% end %>	  
+	  
+	</div> 
+	<div id="DPopDiagShade" class="LabelPopDiagShade"></div>	    	
+  
+</div>
+
+<%= render('common/footer') %>  <!-- 尾部 -->

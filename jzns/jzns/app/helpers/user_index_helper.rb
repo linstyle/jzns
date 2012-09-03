@@ -1,0 +1,2 @@
+module UserIndexHelper
+end

@@ -1,0 +1,107 @@
+﻿/*用户登录后的CSS*/
+
+/*头部条*/
+.FUserHeader 
+{
+	z-index: 9998;
+	height: 35px;
+	width: 100%;	
+	left: 0;
+	top: 0;
+	font: 12px/1.125 Arial,Helvetica,sans-serif;
+	position: fixed;
+	background-repeat: repeat-x;
+	background: url(global_bg.png);
+	line-height:33px;
+}
+
+.FUserHeaderList
+{
+	margin:0 auto;
+	width:950px;	
+}
+
+.FUserHeaderList li
+{
+  float:left; 
+  margin-left:20px;
+  padding-left:5px;
+  padding-right:5px;
+  font-size: 14px;
+}
+
+.HeaderLinkSelect
+{
+	background: #4480A1;
+}
+
+/*公共事件内容块显示*/
+.FLabelEvent li
+{
+	float:left;
+	margin-left:5px;
+	margin-top:5px;
+}
+
+.LabelEvent
+{
+	width:110px;
+	height:90px;
+	padding:15px;
+	background:#00B7DF;	
+	
+}
+
+.LabelEventTitle
+{
+	height:60px;
+}
+
+.LabelEventAttr
+{
+	margin-top:10px;
+}
+
+/*点击事件显示的内容页面*/
+.FUserMessageContent 
+{
+	width:630px;
+	height:100%; 
+	margin-left:100px;
+}
+
+.FSend
+{
+		
+}
+
+.LabelMHead
+{
+	height:50px;
+	width:50px;
+	float:left;
+	background:#FFffFF;
+}
+
+.LabelMContent
+{
+	width:570px;
+	float:left;
+	padding-left:10px;
+	font-size: 14px;
+	line-height: 22px;	
+}
+
+.LabelAttr
+{
+	margin-top:20px;
+	color: #7AA5B9;
+	font-size: 12px;
+	font: 12px/1.125 Arial,Helvetica,sans-serif;		
+}
+
+.LabelSendMsgResult
+{
+	width:100%;
+	text-align:center;
+}
