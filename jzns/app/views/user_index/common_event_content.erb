@@ -29,7 +29,7 @@ function CheckInputContentLength(Edit, maxlen)
 	<!-- 内容显示 -->
 	<div class="FUserMessageContent">
 		<!-- 输入内容框 -->		
-	  <%= form_for @new_event_content, :url => { :controller => 'user_index', :action => 'send_common_content', :id=>"#{@event_id}"} do |f| %>
+	  <%= form_for @new_event_content, :url => { :controller => 'user_index', :html => { :multipart => true }, :action => 'send_common_content', :id=>"#{@event_id}"} do |f| %>
 			<div style="display:inline;">				
 				<%= f.submit "发布" ,:disabled=>true,:class => "link-btn-disable",:id=>"send_button",:style=>"display:inline;"%>				
 			</div>
@@ -40,6 +40,8 @@ function CheckInputContentLength(Edit, maxlen)
 			<div style="margin-left:-2px">
 				<%= f.text_area :content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>
 			</div>
+			
+			<%= form.file_field :photo %>
 		<% end %>
 		
 		<!-- 成功或错误提示 -->
@@ -59,7 +61,11 @@ function CheckInputContentLength(Edit, maxlen)
 					
 				<div class="LabelMContent">
 					<font color=#307D74><%=  event_content.user_nickname %>:</font>
-					<%=  event_content.content%>
+					<%=  event_content.content%>				
+						
+					<%= image_tag @event_content.photo.url %>
+					<%= image_tag @event_content.photo.url(:medium) %>
+					<%= image_tag @event_content.photo.url(:thumb) %>
 						
 					<div class="LabelAttr">
 						<%= event_content.insert_time.strftime("%D %R") %>
