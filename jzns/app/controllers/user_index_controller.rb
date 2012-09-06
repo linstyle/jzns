@@ -57,12 +57,24 @@ class UserIndexController < ApplicationController
   
   #消息发送.公共事件
   def send_common_content
+    puts "yyyyyyyyy"
+    
     event_id = params[:id]
   	new_common_content = CommonEventContent.new(params[:common_events_content])
   	
   	new_common_content.event_id = event_id
   	new_common_content.user_id = @user.id
   	new_common_content.user_nickname = @user.nick_name
+  	
+  	
+  	puts "xxxxxxxxxxxxxxxx"
+  	
+  	
+  	puts new_common_content.event_id
+  	puts new_common_content.user_id
+  	puts new_common_content.user_nickname
+  	
+  	
 
 	  if new_common_content.save
 	  	flash[:notice] = "消息成功发送"

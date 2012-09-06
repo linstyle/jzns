@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904032012) do
+ActiveRecord::Schema.define(:version => 20120905012028) do
 
   create_table "common_event_contents", :force => true do |t|
     t.integer   "event_id"

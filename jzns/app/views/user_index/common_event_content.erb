@@ -41,7 +41,7 @@ function CheckInputContentLength(Edit, maxlen)
 				<%= f.text_area :content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>
 			</div>
 			
-			<%= form.file_field :photo %>
+			
 		<% end %>
 		
 		<!-- 成功或错误提示 -->
@@ -63,9 +63,7 @@ function CheckInputContentLength(Edit, maxlen)
 					<font color=#307D74><%=  event_content.user_nickname %>:</font>
 					<%=  event_content.content%>				
 						
-					<%= image_tag @event_content.photo.url %>
-					<%= image_tag @event_content.photo.url(:medium) %>
-					<%= image_tag @event_content.photo.url(:thumb) %>
+
 						
 					<div class="LabelAttr">
 						<%= event_content.insert_time.strftime("%D %R") %>
