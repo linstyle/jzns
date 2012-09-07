@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904032012) do
+ActiveRecord::Schema.define(:version => 20120907002418) do
 
   create_table "common_event_contents", :force => true do |t|
     t.integer   "event_id"
     t.integer   "user_id",                           :null => false
     t.string    "user_nickname",      :limit => 10,  :null => false
-    t.string    "content",            :limit => 140, :null => false
+    t.string    "msg_content",        :limit => 140, :null => false
     t.timestamp "insert_time",                       :null => false
     t.string    "photo_file_name"
     t.string    "photo_content_type"
