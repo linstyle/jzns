@@ -29,19 +29,23 @@ function CheckInputContentLength(Edit, maxlen)
 	<!-- 内容显示 -->
 	<div class="FUserMessageContent">
 		<!-- 输入内容框 -->		
-	  <%= form_for @new_event_content, :url => { :controller => 'user_index', :html => { :multipart => true }, :action => 'send_common_content', :id=>"#{@event_id}"} do |f| %>
-			<div style="display:inline;">				
-				<%= f.submit "发布" ,:disabled=>true,:class => "link-btn-disable",:id=>"send_button",:style=>"display:inline;"%>				
-			</div>
-			<span id="content_notic">还可输入</span>
-			<span id="content_remaining" style="font-weight:bold">140</span>字
-			<br/>
+	  <%= form_for @new_event_content, :url => { :controller => 'user_index', :html => { :multipart => true }, :action => 'send_common_content', :id=>"#{@event_id}"} do |f| %>			
+			<ul>
+				<li>		
+					<%= f.submit "发布" ,:disabled=>true,:class => "link-btn-disable",:id=>"send_button",:style=>"display:inline;"%>				
+				<span id="content_notic">还可输入</span>
+				<span id="content_remaining" style="font-weight:bold">140</span>字			
+				</li>	
+				
+				<li>
+						<%= f.text_area :msg_content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>			
+				</li>	
+				
+				<li style="font: 12px/1.125 Arial,Helvetica,sans-serif;">
+					<%= f.file_field :photo,:name=>"上传"%>
+				</li>							
+			</ul>
 			
-			<div style="margin-left:-2px">
-				<%= f.text_area :msg_content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>
-			</div>
-			
-			<%= f.file_field :photo %>
 		<% end %>
 		
 		<!-- 成功或错误提示 -->
@@ -61,14 +65,12 @@ function CheckInputContentLength(Edit, maxlen)
 					
 				<div class="LabelMContent">
 					<font color=#307D74><%=  event_content.user_nickname %>:</font>
-					<%=  event_content.msg_content%>				
+					<%=  event_content.msg_content%>
+					</br>
+					<% if event_content.photo_file_name %>
+						<%= image_tag event_content.photo.url(:thumb) %>
+					<% end %>
 					
-					<%= image_tag event_content.photo.url,:alt =>"被GFW和谐了！" %>
-					<%= image_tag event_content.photo.url(:medium) %>
-					<%= image_tag event_content.photo.url(:thumb) %>					
-				
-
-						
 					<div class="LabelAttr">
 						<%= event_content.insert_time.strftime("%D %R") %>
 					</div>

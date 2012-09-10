@@ -1,7 +1,7 @@
 #encoding:utf-8
 class CommonEventContent < ActiveRecord::Base
   attr_accessible :photo
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "130x130>" }
   
   attr_accessible :msg_content
 	#content
