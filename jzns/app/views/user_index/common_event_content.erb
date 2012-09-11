@@ -38,12 +38,12 @@ function CheckInputContentLength(Edit, maxlen)
 				</li>	
 				
 				<li>
-						<%= f.text_area :msg_content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>			
+					<%= f.text_area :msg_content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>			
 				</li>	
 				
 				<li style="font: 12px/1.125 Arial,Helvetica,sans-serif;">
-					<%= f.file_field :photo,:name=>"上传"%>
-				</li>							
+					<%= f.file_field :photo%>
+				</li>
 			</ul>
 			
 		<% end %>
@@ -52,7 +52,8 @@ function CheckInputContentLength(Edit, maxlen)
 		
 	  <% if flash[:notice] %>
 			<div class="LabelSendMsgResult PublicNoticAreaRed">
-		  	<font color=#B94A48><%= flash[:notice] %></font>	  	
+		  	<font color=#B94A48><%= flash[:notice] %></font>
+		  	
 		  </div>
 	  <% end %>
 	  
@@ -68,7 +69,7 @@ function CheckInputContentLength(Edit, maxlen)
 					<%=  event_content.msg_content%>
 					</br>
 					<% if event_content.photo_file_name %>
-						<%= image_tag event_content.photo.url(:thumb) %>
+						<%= image_tag event_content.photo.url(:medium) %>
 					<% end %>
 					
 					<div class="LabelAttr">

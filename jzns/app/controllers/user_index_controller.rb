@@ -58,13 +58,13 @@ class UserIndexController < ApplicationController
   #消息发送.公共事件
   def send_common_content
     event_id = params[:id]
-  	new_common_content = CommonEventContent.new(params[:common_event_content])
+  	@new_common_content = CommonEventContent.new(params[:common_event_content])
   	
-  	new_common_content.event_id = event_id
-  	new_common_content.user_id = @user.id
-  	new_common_content.user_nickname = @user.nick_name
+  	@new_common_content.event_id = event_id
+  	@new_common_content.user_id = @user.id
+  	@new_common_content.user_nickname = @user.nick_name
 
-	  if new_common_content.save
+	  if @new_common_content.save
 	  	flash[:notice] = "消息成功发送"
 	  	event = CommonEvent.find(event_id)	  	
 	  	event.IncMsgCount if event
@@ -72,7 +72,7 @@ class UserIndexController < ApplicationController
 	  		logger.error("Err, send_common_content:event.msgcount save failed,userid=#{@user.id},eventid=#{event_id}") 	
 	    end	  	
 	  else
-	    flash[:notice] = "消息发送失败,查看内容是否为空"
+	    flash[:notice] = "消息发送失败"+@new_common_content.errors.full_messages.to_s
 	  end
 	  
 	  redirect_to(:action => "common_event_content", :id=>event_id)
