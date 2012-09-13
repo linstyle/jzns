@@ -1,7 +1,25 @@
 <%= render('common/header') %>  <!-- 头部 -->
 
-<div class="FMain">  
-  	22  	
+<div class="FMain">  	  	
+	<%= form_for @user_setting, :url => { :controller => 'user_index', :action => 'setting_commit'} do |f| %>
+		<ul>
+			<li>
+	  	<span style="display:block">昵称:(10个字符内)</span>
+	  		<%= error_message_on @user_setting, :nick_name %>
+				<%= f.text_field :nick_name, :size => "20x1", :value => "#{@user.nick_name}"%> 				 				
+			</li>
+			
+			<li style="margin-top:15px;">
+		  	<span style="display:block">找到我的方式(QQ,微博,邮箱.48个字符内):</span>
+		  	<%= error_message_on @user_setting, :contact_me %> 		
+				<%= f.text_area :contact_me, :size => "40x2", :value => "#{@user.contact_me}"%>   				
+			</li>	
+			
+			<li style="margin-top:20px;">
+				<%= f.submit "提交" ,:class => "link-btn-send",:id=>"send_button",:style=>"display:inline"%>							
+			</li>
+		</ul>				
+	<% end %>			  	
 </div>
 
 <%= render('common/footer') %>  <!-- 尾部 -->

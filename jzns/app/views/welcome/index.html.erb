@@ -8,7 +8,7 @@
 			<div style="margin-top:130px;margin-left:80px">
 				<ul>
 				<li>								
-				<%= f.label :name, "登陆账号(邮箱)" %>
+				<%= f.label :name, "登陆账号(邮箱,长度32个字符内)" %>
 				<%= error_message_on @user, :name,:class=>"PublicNoticAreaRed"%>
 				<%= f.email_field :name,:class => "txt-ctrl",:length => "50" %> 
 				</li>	

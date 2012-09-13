@@ -1,6 +1,6 @@
 #encoding:utf-8
 class UserIndexController < ApplicationController
-  before_filter :find_user, :only => [:common_event,:common_event_content,:send_common_content, :person_event,:follow_event,:follow_common_event_add,:follow_common_event_cancel,:setting,:about]
+  before_filter :find_user, :only => [:common_event,:common_event_content,:send_common_content, :person_event,:follow_event,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
   
   def find_user
   	@user = User.find_by_id(session[:user_id])
@@ -97,7 +97,26 @@ class UserIndexController < ApplicationController
   #设置
   def setting
 		@select_link=3
-		  
+		@user_setting = User.new				  
+  end
+  
+  def setting_commit
+		user_setting = User.new(params[:user])
+
+		if user_setting.nick_name && @user.nick_name != user_setting.nick_name
+			@user.nick_name = user_setting.nick_name
+	  end
+		 
+		if @user.contact_me != user_setting.contact_me
+			@user.contact_me = user_setting.contact_me 			
+	  end
+		
+		
+		if !@user.save()
+			logger.error("Err, setting save failed. userid:#{@user.id}")	
+		end
+		
+		redirect_to(:action => "setting")
   end
   
   #关于
