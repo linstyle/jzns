@@ -1,5 +1,7 @@
 #encoding:utf-8
 class User < ActiveRecord::Base
+	attr_protected :id
+	
 	set_primary_key "id" 
 
 	#id(name)
@@ -27,8 +29,6 @@ class User < ActiveRecord::Base
  	has_secure_password
  	#确认两次是否一样
   validates_presence_of :password,  :on => :create, :message => "两次输入密码不一致"	
-  
-  validates_uniqueness_of :password, :on => :update
   
  
   def find_by_name(name)
