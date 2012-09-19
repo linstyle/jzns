@@ -42,24 +42,24 @@ function CheckInputContentLength(Edit, maxlen)
 
 <%= render('common/header') %>  <!-- 头部 -->
 
-<div class="FMain">  
+<div class="FMain">
+	<% if @user.is_pm %>
 	<ul class="FLabelEvent">
 		<li>			
-			<% if @user.id=DataTemplate::ADMIN_ID %>
 			<a href="javascript:void(0)" onclick="ShowCreateEventDiag()"> 
-			<div class="LabelEvent">  				
-				<div class="LabelEventTitle">
-					创建事件
+				<div class="LabelEvent">  				
+					<div class="LabelEventTitle">
+						创建事件
+					</div>
+	  				
+					<div class="LabelEventAttr">
+							
+				 	</div>
 				</div>
-  				
-				<div class="LabelEventAttr">
-						
-			  </div>
-			</div>
-			</a>
-			<% end %>
-		</li>
+			</a>			
+		</li>	
 	</ul>
+	<% end %>
 	
 	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
 	  	

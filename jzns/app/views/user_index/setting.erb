@@ -5,15 +5,24 @@
 		<ul>
 			<li>
 	  	<span style="display:block">昵称:(10个字符内)</span>
-	  		<%= error_message_on @user_setting, :nick_name %>
+	  		<%= error_message_on @user, :nick_name %>
 				<%= f.text_field :nick_name, :size => "20x1", :value => "#{@user.nick_name}"%> 				 				
 			</li>
 			
 			<li style="margin-top:15px;">
 		  	<span style="display:block">找到我的方式(QQ,微博,邮箱.48个字符内):</span>
-		  	<%= error_message_on @user_setting, :contact_me %> 		
+		  	<%= error_message_on @user, :contact_me %> 		
 				<%= f.text_area :contact_me, :size => "40x2", :value => "#{@user.contact_me}"%>   				
 			</li>	
+			
+			
+<% if @user.errors.any? %>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+<% end %>			
 			
 			<li style="margin-top:20px;">
 				<%= f.submit "提交" ,:class => "link-btn-send",:id=>"send_button",:style=>"display:inline"%>							

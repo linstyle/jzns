@@ -10,8 +10,9 @@ class ManagerController < ApplicationController
   
    
   def create_common_event
-  	if @user.id!=DataTemplate::ADMIN_ID 
-  		redirect_to(:controller=>"welcome",:action => "index")  	
+  	if !@user.is_pm
+  		redirect_to(:controller=>"welcome",:action => "index")
+  		return
     end
     
     new_common_content = CommonEvent.new(params[:common_event])

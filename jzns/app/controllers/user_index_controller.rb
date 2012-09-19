@@ -101,22 +101,26 @@ class UserIndexController < ApplicationController
   end
   
   def setting_commit
-		user_setting = User.new(params[:user])
+		@user_setting = User.new(params[:user])
+		
+		puts "xxxxxxxxxxxxxxxxx"
+		puts @user.password
 		
 		#安全校验注意
-		if user_setting.nick_name && @user.nick_name != user_setting.nick_name
-			if !@user.update_attributes("nick_name", user_setting.nick_name)
-				logger.error("Err, setting update_attribute nick_name failed. userid:#{@user.id}")	
-			end			
+		if @user.nick_name != @user_setting.nick_name
+			if !@user.update_attributes(:nick_name=> @user_setting.nick_name)
+				logger.error("Err, setting update_attributes nick_name failed. userid:#{@user.id}")	
+				return render(:action =>"setting")				
+			end
 	  end
 		 
-		if @user.contact_me != user_setting.contact_me
-			if !@user.update_attributes("contact_me", user_setting.contact_me)
-				logger.error("Err, setting update_attribute contact_me failed. userid:#{@user.id}")	
+		if @user.contact_me != @user_setting.contact_me
+			if !@user.update_attributes(:contact_me=>@user_setting.contact_me)
+				logger.error("Err, setting update_attributes contact_me failed. userid:#{@user.id}")	
+				return render(:action =>"setting")
 			end
 	  end
 
-		
 		redirect_to(:action => "setting")
   end
   
