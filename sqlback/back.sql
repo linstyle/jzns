@@ -32,7 +32,7 @@ CREATE TABLE `common_event_contents` (
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `common_event_contents` */
 
@@ -68,6 +68,7 @@ insert  into `common_event_contents`(`id`,`event_id`,`user_id`,`user_nickname`,`
 insert  into `common_event_contents`(`id`,`event_id`,`user_id`,`user_nickname`,`msg_content`,`insert_time`,`photo_file_name`,`photo_content_type`,`photo_file_size`,`photo_updated_at`) values (55,8,20120907,'aa10','66','2012-09-11 10:19:16','未命名.jpg','image/jpeg',24965,'2012-09-11 10:19:16');
 insert  into `common_event_contents`(`id`,`event_id`,`user_id`,`user_nickname`,`msg_content`,`insert_time`,`photo_file_name`,`photo_content_type`,`photo_file_size`,`photo_updated_at`) values (56,8,20120907,'aa10','556','2012-09-11 11:13:05','无标题.png','image/png',7559,'2012-09-11 11:13:05');
 insert  into `common_event_contents`(`id`,`event_id`,`user_id`,`user_nickname`,`msg_content`,`insert_time`,`photo_file_name`,`photo_content_type`,`photo_file_size`,`photo_updated_at`) values (57,15,20120907,'aa10','还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96字还可输入 96还可输入 96字还可','2012-09-13 09:01:12',NULL,NULL,NULL,NULL);
+insert  into `common_event_contents`(`id`,`event_id`,`user_id`,`user_nickname`,`msg_content`,`insert_time`,`photo_file_name`,`photo_content_type`,`photo_file_size`,`photo_updated_at`) values (58,17,2,'adfdf','搜索','2012-09-19 11:33:30',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `common_event_follows` */
 
@@ -96,7 +97,7 @@ CREATE TABLE `common_events` (
   `message_count` int(10) DEFAULT '0' COMMENT '信息条数',
   `lastupdate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `common_events` */
 
@@ -115,6 +116,10 @@ insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) val
 insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (13,'33434',0,'2012-09-01 18:14:27');
 insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (14,'ee',1,'2012-09-07 09:41:57');
 insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (15,'eeff',11,'2012-09-13 09:01:12');
+insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (16,'大的',0,'2012-09-18 09:20:55');
+insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (17,'ff',1,'2012-09-19 11:33:30');
+insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (18,'ff1',0,'2012-09-18 09:57:28');
+insert  into `common_events`(`id`,`title`,`message_count`,`lastupdate_time`) values (19,'fff',0,'2012-09-18 09:59:04');
 
 /*Table structure for table `person_events` */
 
@@ -155,16 +160,18 @@ CREATE TABLE `users` (
   `password_digest` char(60) COLLATE utf8_unicode_ci NOT NULL COMMENT '密码',
   `nick_name` char(10) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户昵称',
   `contact_me` char(48) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系方式',
+  `is_pm` tinyint(1) DEFAULT '0',
   `lastlogin_time` datetime DEFAULT '2012-08-10 00:00:00' COMMENT '最后登录时间',
   `reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '注册(插入)时间',
   PRIMARY KEY (`id`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=20120908 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20120909 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`lastlogin_time`,`reg_time`) values (2,'a@a.com','$2a$10$7g7gJb1DJYwrpPXQUfyH2u3SIJKXhLomt8.2eBjcK4GbZfyOIPQyW','a',NULL,'2012-08-13 09:13:16','2012-08-13 09:13:16');
-insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`lastlogin_time`,`reg_time`) values (20120906,'lin_style@foxmail.com','$2a$10$lYWxNptRa14NNxlQiYBPRenTdwfZHW2DyAElekawynyQqF3Mrw.Eq','lindp',NULL,'2012-09-13 11:07:33','2012-09-13 11:07:33');
-insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`lastlogin_time`,`reg_time`) values (20120907,'aa10@aa10.com','$2a$10$k9GxzzKZ/NChx6qd1Ctl4eix4CyhmLrwOMNZkH1.8nPfUwCTt6dyS','aa10',NULL,'2012-09-13 08:54:53','2012-09-13 08:54:53');
+insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (2,'a@a.com','$2a$10$7g7gJb1DJYwrpPXQUfyH2u3SIJKXhLomt8.2eBjcK4GbZfyOIPQyW','adfdf','多的dd',0,'2012-09-19 10:17:02','2012-09-19 10:20:01');
+insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (20120906,'lin_style@foxmail.com','$2a$10$lYWxNptRa14NNxlQiYBPRenTdwfZHW2DyAElekawynyQqF3Mrw.Eq','lindp',NULL,1,'2012-09-19 08:18:51','2012-09-19 08:18:51');
+insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (20120907,'aa10@aa10.com','$2a$10$k9GxzzKZ/NChx6qd1Ctl4eix4CyhmLrwOMNZkH1.8nPfUwCTt6dyS','aa10',NULL,0,'2012-09-13 08:54:53','2012-09-13 08:54:53');
+insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (20120908,'aa11@aa10.com','$2a$10$jPKTOTFuLleTZnTxXg06M.FacvL86GciGLe9fXWSPpOGFA1GuX56u','干干','地地道道',0,'2012-09-18 09:20:50','2012-09-18 09:20:50');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
