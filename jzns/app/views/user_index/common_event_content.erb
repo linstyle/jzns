@@ -41,7 +41,7 @@ function CheckInputContentLength(Edit, maxlen)
 					<%= f.text_area :msg_content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>			
 				</li>	
 				
-				<li style="font: 12px/1.125 Arial,Helvetica,sans-serif;">
+				<li>
 					<%= f.file_field :photo%>
 				</li>
 			</ul>

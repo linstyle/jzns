@@ -27,7 +27,7 @@
 				<% end %>	
 	  		  		
 				<li>
-					Hi,<%= @user.nick_name %> 大人.聚众唠事网恭迎您!
+					Hi,<%= @user.nick_name %> 大人.看事儿网恭迎您!
 				</li>	  							
 
 				<%= link_to(:controller => 'user_index', :action => 'setting') do %>		
@@ -63,7 +63,7 @@
 	
 <% else %>
 	<div class="FHead">
-	  	<span style="font-size: 24px"><%= link_to '聚众唠事网', :controller => 'welcome', :action => 'index' %></span>
+	  	<span style="font-size: 24px"><%= link_to '看事儿网', :controller => 'welcome', :action => 'index' %></span>
 	  	<span ><%= link_to '关于', :controller => 'welcome', :action => 'qiuxian' %>
 	</div>
 <% end %>
