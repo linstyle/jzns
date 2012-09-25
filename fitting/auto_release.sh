@@ -8,7 +8,7 @@ rm public/system -rf
 
 month=`date +%m`
 day=`date +%d`
-hour=`date +%k`
+hour=`date +%H`
 min=`date +%M`
 
 release_file_name=jzns-$month-$day-$hour-$min.tar
