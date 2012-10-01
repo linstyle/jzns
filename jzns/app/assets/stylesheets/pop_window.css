@@ -1,4 +1,4 @@
-/*弹窗*/
+/*弹窗和下拉菜单*/
 
 /*底部遮罩*/
 .LabelPopDiagShade
@@ -39,4 +39,24 @@
 	width:100%; 
 	text-align:right; 
 	margin:0 0 6px 0 
+}
+
+/*下拉菜单*/
+.DropDownMenu1
+{
+	width:77px;
+	overflow-y:hidden;
+	background-color:#559DC4;
+}
+.DropDownMenu2
+{
+	width:77px;
+	height:33px;
+	overflow-y:hidden;
+		
+}
+
+.DropDownMenuList
+{
+	line-height:30px;
 }

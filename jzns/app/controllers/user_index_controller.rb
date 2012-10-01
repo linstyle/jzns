@@ -1,6 +1,6 @@
 #encoding:utf-8
 class UserIndexController < ApplicationController
-  before_filter :find_user, :only => [:common_event,:common_event_content,:send_common_content, :person_event,:follow_event,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
+  before_filter :find_user, :only => [:common_event,:common_event_content,:send_common_content, :person_event,:my_event,:my_follow,:my_say,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
   
   def find_user
   	@user = User.find_by_id(session[:user_id])
@@ -16,7 +16,7 @@ class UserIndexController < ApplicationController
   
   #公共事件
   def common_event
-  	@select_link=0
+  	@select_link=10
   	@new_common_event = CommonEvent.new
   	
 		@events = CommonEvent.order('id desc').page(params[:page]).per(30)				  	
@@ -81,30 +81,36 @@ class UserIndexController < ApplicationController
   
   #个人事件
   def person_event
-  	@select_link=1
+  	
   	
   end
   
-  #我的关注(收藏)
-  def follow_event
-		@select_link=2
+  #我的..	
+  def my_event
+  	@select_link=20
+  	@select_down_menu=20
+	end
 	
-		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	
+  def my_follow
+  	@select_link=20
+  	@select_down_menu=21
+  	
+ 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	 	  	
+	end
+	
+	def my_say
+		@select_link=20
+		@select_down_menu=22
   end
-
-
   
   #设置
   def setting
-		@select_link=3
+		@select_link=30
 		@user_setting = User.new				  
   end
   
   def setting_commit
 		@user_setting = User.new(params[:user])
-		
-		puts "xxxxxxxxxxxxxxxxx"
-		puts @user.password
 		
 		#安全校验注意
 		if @user.nick_name != @user_setting.nick_name

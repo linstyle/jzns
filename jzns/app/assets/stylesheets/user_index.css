@@ -30,7 +30,27 @@
   font-size: 14px;
 }
 
+/*有点别扭，头部链接的下级弹出菜单不受影响*/
+.FUserHeaderList li li
+{
+	padding-left:15px;
+	padding-right:5px;
+	
+	margin-left:0px;
+	margin-bottom:5px;	
+}
+
 .HeaderLinkSelect
+{
+	background:#3B6E8B;
+}
+
+.HeaderLinkOver
+{
+	background: #74A9C4;
+}
+
+.HeaderDropMenuLinkOver
 {
 	background: #4480A1;
 }

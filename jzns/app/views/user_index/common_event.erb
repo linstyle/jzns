@@ -43,7 +43,6 @@ function CheckInputContentLength(Edit, maxlen)
 <%= render('common/header') %>  <!-- 头部 -->
 
 <div class="FMain">
-	<% if @user.is_pm %>
 	<ul class="FLabelEvent">
 		<li>			
 			<a href="javascript:void(0)" onclick="ShowCreateEventDiag()"> 
@@ -59,7 +58,6 @@ function CheckInputContentLength(Edit, maxlen)
 			</a>			
 		</li>	
 	</ul>
-	<% end %>
 	
 	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
 	  	

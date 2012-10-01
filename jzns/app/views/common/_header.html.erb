@@ -2,61 +2,76 @@
 	<div class="FUserHeader">		
 		<div class="FUserHeaderList">	
 			<ul>	  	
-				<%= link_to(:controller => 'user_index', :action => 'common_event') do %>			  		
-			  	<% if 0==@select_link %>
+				<%= link_to(:controller => 'user_index', :action => 'common_event') do %>
+			  	<% if 10==@select_link %>
 			  		<li style="margin-left:0px" class="HeaderLinkSelect">
-	  					公共事件
 	  			<% else %>
-	  				<li style="margin-left:0px">
-	  					公共事件
+	  				<li style="margin-left:0px" onMouseOver="this.className='HeaderLinkOver'" onMouseOut="this.className=''">	  					
 	  			<% end %>
+	  				公共事件
 	  				</li>		  
 				<% end %>
-
  		
-	  		
-				<%= link_to(:controller => 'user_index', :action => 'follow_event') do %>		
-	  			<% if 2==@select_link %>
-	  				<li class="HeaderLinkSelect">						  			
-	  					我的关注
+	  		<a href="javascript:void(0)">
+	  			<% if 20==@select_link %>
+	  				<li class="HeaderLinkSelect DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='HeaderLinkSelect DropDownMenu2'">  					
 	  			<% else %>
-	  				<li>
-	  					我的关注
-	  			<% end %>
+	  				<li class="DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='DropDownMenu2'">
+	  			<% end %>		
+	  					我的......
+							<ul class="DropDownMenuList">
+								<%= link_to(:controller => 'user_index', :action => 'my_event') do %>
+		  					<% if 20==@select_down_menu %>
+			  					<li class="HeaderLinkSelect" onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className='select_down_menu'">
+		  					<% else %>
+			  					<li onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className=''">		  					
+		  					<% end %>
+		  						我的事件	
+		  					</li>
+		  					<% end %>
+		  					
+		  					<%= link_to(:controller => 'user_index', :action => 'my_follow') do %>
+		  					<% if 21==@select_down_menu %>
+			  					<li class="HeaderLinkSelect" onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className='HeaderLinkSelect'">
+			  				<% else %>
+			  					<li onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className=''"> 					
+		  					<% end %>
+			  						我的关注
+		  					</li>
+		  					<% end %>
+		  					
+		  					<%= link_to(:controller => 'user_index', :action => 'my_say') do %>	
+		  					<% if 22==@select_down_menu %>
+			  					<li class="HeaderLinkSelect" onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className='HeaderLinkSelect'">		  					
+		  					<% else %>
+			  					<li onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className=''"> 		  					
+		  					<% end %>
+
+		  						我的发言	
+		  					</li>
+		  					<% end %>
+	  					</ul>
+	  						  						  			
 	  				</li>		  
-				<% end %>	
-	  		  		
-				<li>
+	  		</a>
+	  			  		
+				<li style="color:#3E3E3E">
 					Hi,<%= @user.nick_name %> 大人.看事儿网恭迎您!
 				</li>	  							
 
-				<%= link_to(:controller => 'user_index', :action => 'setting') do %>		
-	  			<% if 3==@select_link %>
-	  				<li style="float:right;" class="HeaderLinkSelect">						  			
-	  					设置
-	  			<% else %>
-	  				<li style="float:right;">
-	  					设置
-	  			<% end %>
-	  				</li>		  
-				<% end %>		
-				
-				<%= link_to(:controller => 'user_index', :action => 'about') do %>		
-	  			<% if 4==@select_link %>
-	  				<li style="float:right;" class="HeaderLinkSelect">						  			
-	  					关于
-	  			<% else %>
-	  				<li style="float:right;">
-	  					关于
-	  			<% end %>
-	  				</li>		  
-				<% end %>						
-												
-				<li style="float:right;">
+				<li style="float:right;" onMouseOver="this.className='HeaderLinkOver'" onMouseOut="this.className=''">
 				  <%= link_to '退出', :controller => 'welcome', :action => 'logout' %>
-				</li>				
+				</li>		
 				
-				
+				<%= link_to(:controller => 'user_index', :action => 'setting') do %>		
+	  			<% if 30==@select_link %>
+	  				<li style="float:right;" class="HeaderLinkSelect">						  			
+	  			<% else %>
+	  				<li style="float:right;" onMouseOver="this.className='HeaderLinkOver'" onMouseOut="this.className=''">	  					
+	  			<% end %>
+	  				设置
+	  				</li>
+				<% end %>						
 			</ul>
 	  </div> <!-- FUserHeaderList -->
 	</div> <!-- FUserHeader -->	

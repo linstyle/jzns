@@ -9,12 +9,7 @@ class ManagerController < ApplicationController
   end
   
    
-  def create_common_event
-  	if !@user.is_pm
-  		redirect_to(:controller=>"welcome",:action => "index")
-  		return
-    end
-    
+  def create_common_event    
     new_common_content = CommonEvent.new(params[:common_event])
     
 		if !new_common_content.save
