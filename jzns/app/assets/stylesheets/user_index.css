@@ -4,7 +4,7 @@
 .FUserHeader 
 {
 	z-index: 9998;
-	height: 35px;
+	height: 30px;
 	width: 100%;	
 	left: 0;
 	top: 0;
@@ -12,47 +12,57 @@
 	position: fixed;
 	background-repeat: repeat-x;
 	background: url(global_bg.png);
-	line-height:33px;
+	line-height:30px;
 }
+
+.FUserHeader a:link  /* 未访问的链接 */
+{
+	text-decoration:none;color: white;
+} 
+
+.FUserHeader a:visited /* 已访问的链接 */
+{
+	text-decoration:none;color:white;
+} 
 
 .FUserHeaderList
 {
 	margin:0 auto;
-	width:950px;	
+	width:950px;
+	font-size: 14px;
 }
 
 .FUserHeaderList li
 {
   float:left; 
-  margin-left:20px;
-  padding-left:5px;
-  padding-right:5px;
-  font-size: 14px;
+  margin-left:20px; 
+  text-align: center;
 }
 
 /*有点别扭，头部链接的下级弹出菜单不受影响*/
 .FUserHeaderList li li
 {
-	padding-left:15px;
-	padding-right:5px;
 	
 	margin-left:0px;
-	margin-bottom:5px;	
+}
+
+.FUserHeaderList a:hover  /*鼠标放上去*/
+{
+	background:#4480A1;
+	display:block;
+}
+
+
+.FUserHeaderList li a
+{
+	padding-left:3px;
+	padding-right:3px;
+	display:block;	
 }
 
 .HeaderLinkSelect
 {
 	background:#3B6E8B;
-}
-
-.HeaderLinkOver
-{
-	background: #74A9C4;
-}
-
-.HeaderDropMenuLinkOver
-{
-	background: #4480A1;
 }
 
 /*公共事件内容块显示*/
@@ -61,6 +71,16 @@
 	float:left;
 	margin-left:5px;
 	margin-top:5px;
+}
+
+.FLabelEvent a:link  /* 未访问的链接 */
+{
+	text-decoration:none;color: #343434;
+} 
+
+.FLabelEvent a:visited /* 已访问的链接 */
+{
+	text-decoration:none;color:#343434;
 }
 
 .LabelEvent

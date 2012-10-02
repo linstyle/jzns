@@ -1,77 +1,67 @@
 <% if session[:user_id] %>
 	<div class="FUserHeader">		
-		<div class="FUserHeaderList">	
+		<div class="FUserHeaderList" >	
 			<ul>	  	
-				<%= link_to(:controller => 'user_index', :action => 'common_event') do %>
-			  	<% if 10==@select_link %>
-			  		<li style="margin-left:0px" class="HeaderLinkSelect">
-	  			<% else %>
-	  				<li style="margin-left:0px" onMouseOver="this.className='HeaderLinkOver'" onMouseOut="this.className=''">	  					
-	  			<% end %>
-	  				公共事件
-	  				</li>		  
-				<% end %>
- 		
-	  		<a href="javascript:void(0)">
-	  			<% if 20==@select_link %>
-	  				<li class="HeaderLinkSelect DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='HeaderLinkSelect DropDownMenu2'">  					
-	  			<% else %>
-	  				<li class="DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='DropDownMenu2'">
-	  			<% end %>		
-	  					我的......
-							<ul class="DropDownMenuList">
-								<%= link_to(:controller => 'user_index', :action => 'my_event') do %>
-		  					<% if 20==@select_down_menu %>
-			  					<li class="HeaderLinkSelect" onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className='select_down_menu'">
-		  					<% else %>
-			  					<li onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className=''">		  					
-		  					<% end %>
-		  						我的事件	
-		  					</li>
-		  					<% end %>
+			  <% if 10==@select_link %>
+			  	<li style="margin-left:0px" class="HeaderLinkSelect">
+	  		<% else %>
+	  			<li style="margin-left:0px">	  					
+	  		<% end %>
+	  			<%= link_to('公共事件',:controller => 'user_index', :action => 'common_event') %>
+	  		</li>		  			
+					  		 
+	  		<% if 20==@select_link %>
+	  			<li class="HeaderLinkSelect DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='HeaderLinkSelect DropDownMenu2'">  					
+	  		<% else %>
+	  			<li class="DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='DropDownMenu2'">
+	  		<% end %>		
+	  				
+				<ul class="DropDownMenuList">
+					<li>
+						<%= link_to('我的....', :controller => 'user_index', :action => 'my_event') %>	
+					</li>
+								
+		  		<% if 20==@select_down_menu %>
+			  		<li class="HeaderLinkSelect">
+		  		<% else %>
+			  		<li>
+		  		<% end %>
+		  			<%= link_to('我的事件', :controller => 'user_index', :action => 'my_event') %>	
+		  		</li>
 		  					
-		  					<%= link_to(:controller => 'user_index', :action => 'my_follow') do %>
-		  					<% if 21==@select_down_menu %>
-			  					<li class="HeaderLinkSelect" onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className='HeaderLinkSelect'">
-			  				<% else %>
-			  					<li onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className=''"> 					
-		  					<% end %>
-			  						我的关注
-		  					</li>
-		  					<% end %>
-		  					
-		  					<%= link_to(:controller => 'user_index', :action => 'my_say') do %>	
-		  					<% if 22==@select_down_menu %>
-			  					<li class="HeaderLinkSelect" onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className='HeaderLinkSelect'">		  					
-		  					<% else %>
-			  					<li onMouseOver="this.className='HeaderDropMenuLinkOver'" onMouseOut="this.className=''"> 		  					
-		  					<% end %>
-
-		  						我的发言	
-		  					</li>
-		  					<% end %>
-	  					</ul>
+		  		<% if 21==@select_down_menu %>
+			  		<li class="HeaderLinkSelect">
+			  	<% else %>
+			  		<li> 					
+		  		<% end %>		  					
+			  		<%= link_to('我的关注', :controller => 'user_index', :action => 'my_follow') %>
+		  		</li>
+		  						
+		  		<% if 22==@select_down_menu %>
+			  		<li class="HeaderLinkSelect">		  					
+		  		<% else %>
+			  		<li> 		  					
+		  		<% end %>		  					
+						<%= link_to('我的发言', :controller => 'user_index', :action => 'my_say') %>		 
+		  		</li>		  					
+	  		</ul>
 	  						  						  			
-	  				</li>		  
-	  		</a>
-	  			  		
-				<li style="color:#3E3E3E">
-					Hi,<%= @user.nick_name %> 大人.看事儿网恭迎您!
-				</li>	  							
+	  		</li>		  
 
-				<li style="float:right;" onMouseOver="this.className='HeaderLinkOver'" onMouseOut="this.className=''">
-				  <%= link_to '退出', :controller => 'welcome', :action => 'logout' %>
-				</li>		
+				<span style="color:#3E3E3E">Hi,<%= @user.nick_name %> 大人.看事儿网恭迎您!</span>
 				
-				<%= link_to(:controller => 'user_index', :action => 'setting') do %>		
-	  			<% if 30==@select_link %>
-	  				<li style="float:right;" class="HeaderLinkSelect">						  			
-	  			<% else %>
-	  				<li style="float:right;" onMouseOver="this.className='HeaderLinkOver'" onMouseOut="this.className=''">	  					
-	  			<% end %>
-	  				设置
-	  				</li>
-				<% end %>						
+				<li style="float:right;">	
+					<%= link_to('退出', :controller => 'welcome', :action => 'logout') %>
+				</li>
+				
+										
+	  		<% if 30==@select_link %>
+	  			<li style="float:right;" class="HeaderLinkSelect">						  			
+	  		<% else %>
+	  			<li style="float:right;">
+	  		<% end %>
+	  			<%= link_to('设置', :controller => 'user_index', :action => 'setting') %>	  		
+	  			</li>
 			</ul>
 	  </div> <!-- FUserHeaderList -->
 	</div> <!-- FUserHeader -->	

@@ -44,19 +44,30 @@
 /*下拉菜单*/
 .DropDownMenu1
 {
-	width:77px;
+	width:87px;
 	overflow-y:hidden;
+	overflow-x:hidden;
 	background-color:#559DC4;
+	display:block;
 }
 .DropDownMenu2
 {
-	width:77px;
-	height:33px;
+	width:87px;
+	height:30px;
 	overflow-y:hidden;
-		
+	overflow-x:hidden;
+	display:block;
 }
 
 .DropDownMenuList
 {
-	line-height:30px;
+
+}
+
+.DropDownMenuList li
+{
+	padding-left:15px;
+	padding-right:10px;
+	
+	margin-left:0px;	
 }

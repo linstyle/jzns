@@ -190,33 +190,6 @@ a:hover  /*鼠标放上去*/
 }
 
 
-.FUserHeader a:link  /* 未访问的链接 */
-{
-	text-decoration:none;color: white;
-} 
-
-.FUserHeader a:visited /* 已访问的链接 */
-{
-	text-decoration:none;color:white;
-} 
-
-.FUserHeader a:hover  /*鼠标放上去*/
-{
-	text-decoration:none;	color:#black;
-}
-
-.FLabelEvent a:link  /* 未访问的链接 */
-{
-	text-decoration:none;color: #343434;
-} 
-
-.FLabelEvent a:visited /* 已访问的链接 */
-{
-	text-decoration:none;color:#343434;
-}
-
-
-
 /*临时头像*/
 .TempHead
 {
