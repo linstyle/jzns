@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :nick_name, :message => "昵称不能为空"
 	#validates_uniqueness_of :nick_name, :message => "您的昵称已被他人使用"
 	#validates_format_of :nick_name, :with =>  /\w/, :message => "昵称只能为中英文、数字"
-	validates_length_of :nick_name, :in => 0..10, :message => "昵称长度不超过10位"
+	validates_length_of :nick_name, :in => 0..5, :message => "昵称长度不超过10个字符"
 	
 	validates_uniqueness_of :nick_name, :on => :update
 	

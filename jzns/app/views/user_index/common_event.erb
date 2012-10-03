@@ -46,15 +46,7 @@ function CheckInputContentLength(Edit, maxlen)
 	<ul class="FLabelEvent">
 		<li>			
 			<a href="javascript:void(0)" onclick="ShowCreateEventDiag()"> 
-				<div class="LabelEvent">  				
-					<div class="LabelEventTitle">
-						创建事件
-					</div>
-	  				
-					<div class="LabelEventAttr">
-							
-				 	</div>
-				</div>
+				创建事件
 			</a>			
 		</li>	
 	</ul>
@@ -68,7 +60,7 @@ function CheckInputContentLength(Edit, maxlen)
 	
 	<div id="DPopDiag" class="LabelPopDiag"> 
 		<div class="LabelPopDiagCloseButton"><a href="javascript:void(0)" onclick="HideCreateEventDiag()"> 关闭</a></div> 
-		  <%= form_for @new_common_event, :url => { :controller => 'manager', :action => 'create_common_event', :id=>"#{@event_id}"} do |f| %>
+		  <%= form_for @new_common_event, :url => { :controller => 'user_index', :action => 'create_common_event', :id=>"#{@event_id}"} do |f| %>
 		  	请输入事件标题:
 				<span id="content_notic">还可输入</span>
 				<span id="content_remaining" style="font-weight:bold">15</span>字

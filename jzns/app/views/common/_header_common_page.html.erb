@@ -14,32 +14,18 @@
 					Hi,<%= @user.nick_name %> 大人.看事儿网恭迎您!
 				</li>	  							
 
-				<%= link_to(:controller => 'user_index', :action => 'setting') do %>		
-	  			<% if 3==@select_link %>
-	  				<li style="float:right;" class="HeaderLinkSelect">						  			
-	  					设置
-	  			<% else %>
-	  				<li style="float:right;">
-	  					设置
-	  			<% end %>
-	  				</li>		  
-				<% end %>		
+				<li style="float:right;">	
+					<%= link_to('退出', :controller => 'welcome', :action => 'logout') %>
+				</li>
 				
-				<%= link_to(:controller => 'user_index', :action => 'about') do %>		
-	  			<% if 4==@select_link %>
-	  				<li style="float:right;" class="HeaderLinkSelect">						  			
-	  					关于
-	  			<% else %>
-	  				<li style="float:right;">
-	  					关于
-	  			<% end %>
-	  				</li>		  
-				<% end %>						
-												
-				<li style="float:right;">
-				  <%= link_to '退出', :controller => 'welcome', :action => 'logout' %>
-				</li>				
-				
+										
+	  		<% if 30==@select_link %>
+	  			<li style="float:right;" class="HeaderLinkSelect">						  			
+	  		<% else %>
+	  			<li style="float:right;">
+	  		<% end %>
+	  			<%= link_to('设置', :controller => 'user_index', :action => 'setting') %>	  		
+	  			</li>		
 				
 			</ul>
 	  </div> <!-- FUserHeaderList -->

@@ -9,15 +9,7 @@ class ManagerController < ApplicationController
   end
   
    
-  def create_common_event    
-    new_common_content = CommonEvent.new(params[:common_event])
-    
-		if !new_common_content.save
-		  logger.error("Err, ManagerController:new_common_content.save failed,userid=#{@user.id}") 
-	  end
-	  
-	  redirect_to(:controller=>"user_index",:action => "common_event")
-  end
+
   
   
 end

@@ -1,6 +1,6 @@
 #encoding:utf-8
 class UserIndexController < ApplicationController
-  before_filter :find_user, :only => [:common_event,:common_event_content,:send_common_content, :person_event,:my_event,:my_follow,:my_say,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
+  before_filter :find_user, :only => [:common_event,:create_common_event,:common_event_content,:send_common_content, :person_event,:my_event,:my_follow,:my_say,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
   
   def find_user
   	@user = User.find_by_id(session[:user_id])
@@ -21,6 +21,19 @@ class UserIndexController < ApplicationController
   	
 		@events = CommonEvent.order('id desc').page(params[:page]).per(30)				  	
   end
+  
+  #新建公共事件
+  def create_common_event    
+    new_common_content = CommonEvent.new(params[:common_event])
+    new_common_content.author_id = @user.id
+    new_common_content.author_nick_name = @user.nick_name
+    
+		if !new_common_content.save
+		  logger.error("Err, ManagerController:new_common_content.save failed,userid=#{@user.id}") 
+	  end
+	  
+	  redirect_to(:controller=>"user_index",:action => "common_event")
+  end  
   
   #公共事件具体的内容
   def common_event_content
@@ -89,18 +102,22 @@ class UserIndexController < ApplicationController
   def my_event
   	@select_link=20
   	@select_down_menu=20
+  	
+ 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?", @user.id]).page(params[:page]).per(30)
 	end
 	
   def my_follow
   	@select_link=20
   	@select_down_menu=21
   	
- 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	 	  	
+ 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,author_nick_name, message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)	 	  	
 	end
 	
 	def my_say
 		@select_link=20
 		@select_down_menu=22
+		
+ 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(30)			
   end
   
   #设置
