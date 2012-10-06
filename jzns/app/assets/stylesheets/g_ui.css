@@ -189,6 +189,15 @@ a:hover  /*鼠标放上去*/
 	text-decoration:none;	color:black;
 }
 
+/*
+	分页
+*/
+.Paginate
+{
+	margin-top:15px;
+	text-align:center;
+}
+
 
 /*临时头像*/
 .TempHead

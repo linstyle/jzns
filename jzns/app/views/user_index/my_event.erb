@@ -1,13 +1,41 @@
 <%= render('common/header') %>  <!-- 头部 -->
 
-<div class="FMain">  
+<div class="FMain">
+	大家都看得到事件:
   <%= render('common/event_show') %>  <!-- 内容显示块 -->
   	
 	<!-- 翻页 -->
-	<div align="center">
+	<div class="Paginate">
 		<%= paginate @events %>
 	</div>
+	
+	这些还在审核中:
+	<ul class="FLabelEvent">
+	
+		<% @events_verify.each do |event| %>
+			<%= link_to({:controller => 'user_index', :action => 'common_event_content', :id=>event}, :target=> "_blank") do %>	  			
+				<li>
+					<div class="LabelEventTitle">
+						<%= event.title	%>
+					</div>
+					
+					<div class="LabelEventAttr">
+						楼主:<%= event.author_nick_name %>
+						<div>
+							条数:<%= event.message_count %>条				
+						</div>
+					</div>
+	    	</li>
+			<% end %>
+		<% end %>
+		
 
+	</ul>
+<div style="clear:both"></div>	
+		<!-- 翻页 -->
+	<div class="Paginate">
+		<%= paginate @events_verify %>
+	</div>		
 </div>
 
 <%= render('common/footer') %>  <!-- 尾部 -->

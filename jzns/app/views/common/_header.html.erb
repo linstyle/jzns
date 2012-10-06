@@ -38,17 +38,17 @@
 		  		</li>
 		  						
 		  		<% if 22==@select_down_menu %>
-			  		<li class="HeaderLinkSelect">		  					
+			  		<li class="HeaderLinkSelect">
 		  		<% else %>
 			  		<li> 		  					
 		  		<% end %>		  					
 						<%= link_to('我的发言', :controller => 'user_index', :action => 'my_say') %>		 
-		  		</li>		  					
+		  		</li> 		
 	  		</ul>
 	  						  						  			
 	  		</li>		  
 
-				<li style="color:#3E3E3E">Hi,<%= @user.nick_name %> 大人.看事儿网恭迎您!</li>
+				<li>Hi,[<%= @user.nick_name %>] 大人.看事儿网恭迎您!</li>
 				
 				<li style="float:right;">	
 					<%= link_to('退出', :controller => 'welcome', :action => 'logout') %>
