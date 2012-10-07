@@ -1,6 +1,6 @@
 /*
 SQLyog Community Edition- MySQL GUI v7.15 
-MySQL - 5.1.63-0ubuntu0.10.04.1 : Database - jzns
+MySQL - 5.1.63-0ubuntu0.10.04.1-log : Database - jzns
 *********************************************************************
 */
 
@@ -54,6 +54,7 @@ CREATE TABLE `common_event_follows` (
 insert  into `common_event_follows`(`user_id`,`event_id`) values (1,2);
 insert  into `common_event_follows`(`user_id`,`event_id`) values (1,1);
 insert  into `common_event_follows`(`user_id`,`event_id`) values (3,7);
+insert  into `common_event_follows`(`user_id`,`event_id`) values (1,29);
 
 /*Table structure for table `common_events` */
 
@@ -65,10 +66,10 @@ CREATE TABLE `common_events` (
   `author_id` int(10) NOT NULL COMMENT '创建者ID',
   `author_nick_name` char(5) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '创建者昵称',
   `message_count` int(10) DEFAULT '0' COMMENT '信息条数',
-  `is_pass` tinyint(1) DEFAULT '0' COMMENT '是否审核通过',
+  `is_pass` tinyint(1) DEFAULT '2' COMMENT '是否审核通过0:审核失败 1:审核通过 2:审核中',
   `lastupdate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `common_events` */
 
@@ -102,6 +103,8 @@ insert  into `common_events`(`id`,`title`,`author_id`,`author_nick_name`,`messag
 insert  into `common_events`(`id`,`title`,`author_id`,`author_nick_name`,`message_count`,`is_pass`,`lastupdate_time`) values (28,'20',1,'lin_s',0,0,'2012-10-07 00:11:26');
 insert  into `common_events`(`id`,`title`,`author_id`,`author_nick_name`,`message_count`,`is_pass`,`lastupdate_time`) values (29,'21',1,'lin_s',0,0,'2012-10-07 00:11:28');
 insert  into `common_events`(`id`,`title`,`author_id`,`author_nick_name`,`message_count`,`is_pass`,`lastupdate_time`) values (30,'22',1,'lin_s',0,0,'2012-10-07 00:12:27');
+insert  into `common_events`(`id`,`title`,`author_id`,`author_nick_name`,`message_count`,`is_pass`,`lastupdate_time`) values (31,'身上',1,'lin_s',0,0,'2012-10-07 23:01:38');
+insert  into `common_events`(`id`,`title`,`author_id`,`author_nick_name`,`message_count`,`is_pass`,`lastupdate_time`) values (32,'身上',1,'lin_s',0,0,'2012-10-07 23:01:45');
 
 /*Table structure for table `person_events` */
 
@@ -150,7 +153,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (1,'lin_style@foxmail.com','$2a$10$uAey7DYy4TOb5vH9zUSJDevZKhNfzec05/TnR1geBIzx5Vl32XeYO','lin_s',NULL,1,'2012-10-07 00:34:07','2012-10-07 00:34:07');
+insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (1,'lin_style@foxmail.com','$2a$10$uAey7DYy4TOb5vH9zUSJDevZKhNfzec05/TnR1geBIzx5Vl32XeYO','lin_s',NULL,1,'2012-10-07 20:22:38','2012-10-07 20:22:38');
 insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (2,'a@a.com','$2a$10$w8TdUpI86OpHc97mZIzQi.G0W.c1I2A18gpLknpjMtiIVKcZPtBpG','a',NULL,0,'2012-10-01 13:34:35','2012-10-01 13:34:35');
 insert  into `users`(`id`,`name`,`password_digest`,`nick_name`,`contact_me`,`is_pm`,`lastlogin_time`,`reg_time`) values (3,'a1@a.com','$2a$10$9pOsWhIJ4Jfl25rUpZTJ1e2AOecJfLPBwwXslmBMJwraWdS8Kqy.2','名字最长是','',0,'2012-10-06 19:49:34','2012-10-06 19:49:34');
 

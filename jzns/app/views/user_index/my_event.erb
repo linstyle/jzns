@@ -1,41 +1,53 @@
 <%= render('common/header') %>  <!-- 头部 -->
 
 <div class="FMain">
-	大家都看得到事件:
+	<div class="MyEventList">
+	<ul>
+  <% if 201==@select_my_event %>
+		<li style="font-weight:700;">
+	<% else %>
+		<li>
+	<% end %>
+		<%= link_to('所有事件', :controller => 'user_index', :action => 'my_event',:my_event_class=>"201") %>	
+	</li>	
+	
+  <% if 202==@select_my_event %>
+		<li style="font-weight:700;">
+	<% else %>
+		<li>
+	<% end %>
+		<%= link_to('成功发表', :controller => 'user_index', :action => 'my_event',:my_event_class=>"202") %>	
+	</li>	
+	
+  <% if 203==@select_my_event %>
+		<li style="font-weight:700;">
+	<% else %>
+		<li>
+	<% end %>
+		<%= link_to('审核中', :controller => 'user_index', :action => 'my_event',:my_event_class=>"203") %>	
+	</li>	
+	
+  <% if 204==@select_my_event %>
+		<li style="font-weight:700;">
+	<% else %>
+		<li>
+	<% end %>
+		<%= link_to('审核失败', :controller => 'user_index', :action => 'my_event',:my_event_class=>"204") %>	
+	</li>	
+		
+	</ul>
+	<div style="clear:both"></div>	
+	</div>
+	
+	   
   <%= render('common/event_show') %>  <!-- 内容显示块 -->
   	
 	<!-- 翻页 -->
+	<div style="clear:both"></div>	
 	<div class="Paginate">
 		<%= paginate @events %>
 	</div>
-	
-	这些还在审核中:
-	<ul class="FLabelEvent">
-	
-		<% @events_verify.each do |event| %>
-			<%= link_to({:controller => 'user_index', :action => 'common_event_content', :id=>event}, :target=> "_blank") do %>	  			
-				<li>
-					<div class="LabelEventTitle">
-						<%= event.title	%>
-					</div>
-					
-					<div class="LabelEventAttr">
-						楼主:<%= event.author_nick_name %>
-						<div>
-							条数:<%= event.message_count %>条				
-						</div>
-					</div>
-	    	</li>
-			<% end %>
-		<% end %>
 		
-
-	</ul>
-<div style="clear:both"></div>	
-		<!-- 翻页 -->
-	<div class="Paginate">
-		<%= paginate @events_verify %>
-	</div>		
 </div>
 
 <%= render('common/footer') %>  <!-- 尾部 -->

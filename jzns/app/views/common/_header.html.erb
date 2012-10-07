@@ -2,7 +2,7 @@
 	<div class="FUserHeader">		
 		<div class="FUserHeaderList" >	
 			<ul>	  	
-			  <% if 10==@select_link %>
+			  <% if 100==@select_link %>
 			  	<li style="margin-left:0px" class="HeaderLinkSelect">
 	  		<% else %>
 	  			<li style="margin-left:0px">	  					
@@ -10,7 +10,7 @@
 	  			<%= link_to('公共事件',:controller => 'user_index', :action => 'common_event') %>
 	  		</li>		  			
 					  		 
-	  		<% if 20==@select_link %>
+	  		<% if 200==@select_link %>
 	  			<li class="HeaderLinkSelect DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='HeaderLinkSelect DropDownMenu2'">  					
 	  		<% else %>
 	  			<li class="DropDownMenu2" onMouseOver="this.className='DropDownMenu1'" onMouseOut="this.className='DropDownMenu2'">
@@ -18,18 +18,18 @@
 	  				
 				<ul class="DropDownMenuList">
 					<li>
-						<%= link_to('我的....', :controller => 'user_index', :action => 'my_event') %>	
+						<%= link_to('我的....', :controller => 'user_index', :action => 'my_event',:my_event_class=>'201') %>	
 					</li>
 								
-		  		<% if 20==@select_down_menu %>
+		  		<% if 200==@select_down_menu %>
 			  		<li class="HeaderLinkSelect">
 		  		<% else %>
 			  		<li>
 		  		<% end %>
-		  			<%= link_to('我的事件', :controller => 'user_index', :action => 'my_event') %>	
+		  			<%= link_to('我的事件', :controller => 'user_index', :action => 'my_event',:my_event_class=>'201') %>	
 		  		</li>
 		  					
-		  		<% if 21==@select_down_menu %>
+		  		<% if 210==@select_down_menu %>
 			  		<li class="HeaderLinkSelect">
 			  	<% else %>
 			  		<li> 					
@@ -37,7 +37,7 @@
 			  		<%= link_to('我的关注', :controller => 'user_index', :action => 'my_follow') %>
 		  		</li>
 		  						
-		  		<% if 22==@select_down_menu %>
+		  		<% if 220==@select_down_menu %>
 			  		<li class="HeaderLinkSelect">
 		  		<% else %>
 			  		<li> 		  					
@@ -55,13 +55,24 @@
 				</li>
 				
 										
-	  		<% if 30==@select_link %>
+	  		<% if 300==@select_link %>
 	  			<li style="float:right;" class="HeaderLinkSelect">						  			
 	  		<% else %>
 	  			<li style="float:right;">
 	  		<% end %>
 	  			<%= link_to('设置', :controller => 'user_index', :action => 'setting') %>	  		
 	  			</li>
+	  			
+	  		<% if true==@user.is_pm %>
+		  		<% if 900==@select_link %>
+		  			<li style="float:right;" class="HeaderLinkSelect">						  			
+		  		<% else %>
+		  			<li style="float:right;">
+		  		<% end %>
+		  			<%= link_to('管理', :controller => 'admin', :action => 'index') %>  		
+		  			</li>	
+	  		<% end %>	  		
+
 			</ul>
 	  </div> <!-- FUserHeaderList -->
 	</div> <!-- FUserHeader -->	

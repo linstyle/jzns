@@ -16,10 +16,10 @@ class UserIndexController < ApplicationController
   
   #公共事件
   def common_event
-  	@select_link=10
+  	@select_link=100
   	@new_common_event = CommonEvent.new
-  	
-		@events = CommonEvent.where("is_pass=true").order('id desc').page(params[:page]).per(DataTemplate::PER_EVENT)				  	
+
+		@events = CommonEvent.where("is_pass=1").order('id desc').page(params[:page]).per(DataTemplate::PER_EVENT)				  	
   end
   
   #新建公共事件
@@ -100,32 +100,45 @@ class UserIndexController < ApplicationController
   
   #我的..	
   def my_event
-  	@select_link=20
-  	@select_down_menu=20
-  	
- 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=true ", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)
- 		
- 		@events_verify = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=false ", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)
- 		
+  	@select_link=200
+  	@select_down_menu=200
+  	@select_my_event=params[:my_event_class].to_i
+
+  	if 201==@select_my_event 		#所有事件
+	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ? ", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)  		
+	 		
+  	elsif 202==@select_my_event	#成功发表
+	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=1", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)  		  	
+	 		
+  	elsif 203==@select_my_event	#审核中
+	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=0", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT) 
+	 		 	
+  	elsif 204==@select_my_event	#审核失败
+	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=2", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)
+	 	
+	 	else
+	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ? ", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)  		 	   	
+    end
+ 		 		
 	end
 	
   def my_follow
-  	@select_link=20
-  	@select_down_menu=21
+  	@select_link=200
+  	@select_down_menu=210
   	
  		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,author_nick_name, message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)	 	  	
 	end
 	
 	def my_say
-		@select_link=20
-		@select_down_menu=22
+		@select_link=200
+		@select_down_menu=220
 		
  		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)			
   end
   
   #设置
   def setting
-		@select_link=30
+		@select_link=300
 		@user_setting = User.new				  
   end
   
@@ -152,7 +165,7 @@ class UserIndexController < ApplicationController
   
   #关于
   def about
-		@select_link=4
+		@select_link=400
 		  
   end
   
