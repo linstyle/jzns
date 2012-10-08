@@ -1,6 +1,6 @@
 #encoding:utf-8
 class UserIndexController < ApplicationController
-  before_filter :find_user, :only => [:common_event,:create_common_event,:common_event_content,:send_common_content, :person_event,:my_event,:my_follow,:my_say,:my_verify,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
+  before_filter :find_user, :only => [:common_event,:create_common_event,:del_common_event,:common_event_content,:send_common_content,:person_event,:my_event,:my_follow,:my_say,:my_verify,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
   
   def find_user
   	@user = User.find_by_id(session[:user_id])
@@ -19,7 +19,7 @@ class UserIndexController < ApplicationController
   	@select_link=100
   	@new_common_event = CommonEvent.new
 
-		@events = CommonEvent.where("is_pass=1").order('id desc').page(params[:page]).per(DataTemplate::PER_EVENT)				  	
+		@events = CommonEvent.where("is_pass=1").order('id desc').page(params[:page]).per(DataTemplate::PER_EVENT-1)				  	
   end
   
   #新建公共事件
@@ -33,15 +33,36 @@ class UserIndexController < ApplicationController
 	  end
 	  
 	  redirect_to(:controller=>"user_index",:action => "common_event")
-  end  
+  end
+  
+  #删除公共事件
+  def del_common_event
+  	#验证是否作者
+  	event_id = params[:id]
+  	
+  	event = CommonEvent.find(event_id)
+  	if !event || event.author_id==@user.id
+  		logger.error("Err, del_common_event failed userid=#{@user.id},eventid=#{event_id}")
+  		
+    end
+	end
   
   #公共事件具体的内容
   def common_event_content
   	@event_id = params[:id]
   	@new_event_content = CommonEventContent.new
+  	
+  	#判断是否通过审核
+  	event = CommonEvent.find(@event_id)
+  	if !event || event.is_pass!=1
+  		return redirect_to(:controller=>"user_index",:action => "common_event")
+    end
 		  	
   	#判断是否已关注该内容
   	@is_follow = CommonEventFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
+  	
+  	#判断是否作者
+  	@is_author = event.author_id==@user.id
   	
   	@event_contents = CommonEventContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
 
@@ -111,10 +132,10 @@ class UserIndexController < ApplicationController
 	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=1", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)  		  	
 	 		
   	elsif 203==@select_my_event	#审核中
-	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=0", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT) 
+	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=2", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT) 
 	 		 	
   	elsif 204==@select_my_event	#审核失败
-	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=2", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)
+	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=0", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)
 	 	
 	 	else
 	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ? ", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)  		 	   	

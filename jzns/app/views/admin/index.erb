@@ -7,40 +7,40 @@
 		<% else %>
 			<li>
 		<% end %>
-			<%= link_to('待审核', :controller => 'user_index', :action => 'my_event',:my_event_class=>"201") %>	
+			<%= link_to('待审核', :controller => 'admin', :action => 'index') %>	
 		</li>
 	</ul>
 	<div style="clear:both"></div>
 	
-<ul class="FLabelEvent">
 
-	<% @events.each do |event| %>
-		<%= link_to({:controller => 'user_index', :action => 'common_event_content', :id=>event}, :target=> "_blank") do %>	  			
-			<li>
-				<div class="LabelEventTitle">
-					<%= event.title	%>
-				</div>
-				
-				<div class="LabelEventAttr">
-					楼主:<%= event.author_nick_name %>
-					<div>
-						条数:<%= event.message_count %>条
+<%= form_tag(:controller => 'admin', :action => 'verify') do %>
+	<ul class="FLabelEvent">
+		<% @events.each do |event| %>
+			<%= link_to({:controller => 'user_index', :action => 'common_event_content', :id=>event}, :target=> "_blank") do %>	  			
+				<li>
+					<div class="LabelEventTitle">
+						<%= event.title	%>
 					</div>
-				</div>
-				<%= check_box_tag("ok_verify_ids[]", event.id, value = "1")%> 
-    	</li>
+					
+					<div class="LabelEventAttr">
+						楼主:<%= event.author_nick_name %>
+						<div>
+							条数:<%= event.message_count %>条
+						</div>
+					</div>
+					<%= check_box_tag("ok_verify_ids[]", event.id, value = "1")%> 
+	    	</li>
+			<% end %>
 		<% end %>
-	<% end %>
-</ul>	
+	</ul>			
 	
-	<%= form_for @user, :url => { :controller => 'admin', :action => 'ok_verify'} do |f| %>
-
-		
-		<div style="clear:both"></div>  
-		<div style="text-align:center;margin-top:15px">
-			<%= f.submit "通过" ,:class => "link-btn-dark"%>
-		</div>
-	<% end %>		
+	<div style="clear:both"></div>  
+	<div style="text-align:center;margin-top:15px">
+		<%= submit_tag "通过" ,:class => "link-btn-dark", :name=>"bt_ok"%>
+		<%= submit_tag "不通过" ,:class => "link-btn-dark", :name=>"bt_no"%>
+	</div>
+	
+<% end %>		
   	
 	<!-- 翻页 -->
 	<div class="Paginate">

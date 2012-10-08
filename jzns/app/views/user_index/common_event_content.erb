@@ -75,17 +75,15 @@ function CheckInputContentLength(Edit, maxlen)
 					<div class="LabelMAttr">
 						<%= event_content.insert_time.strftime("%D %R") %>
 					</div>
-				</div>
-				
-				<div style="clear:both"></div>
-				 		
+				</div>				 		
 	  	</li>
 	  	<% end %>
+	  	<div style="clear:both"></div>
 	  </ul>
 	    	
 		<!-- 翻页 -->
-		<div align="center">
-			
+		<div class="Paginate">
+			<%= paginate @event_contents %>
 		</div>
 	
 	</div><!-- FUserMessageContent -->

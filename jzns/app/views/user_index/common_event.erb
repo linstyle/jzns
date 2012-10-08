@@ -45,16 +45,16 @@ function CheckInputContentLength(Edit, maxlen)
 <div class="FMain">
 	<ul class="FLabelEvent">
 		<a href="javascript:void(0)" onclick="ShowCreateEventDiag()"> 
-		<li>			
-				创建事件			
-		</li>
+			<li style="height:114px;">
+				点我创建事件
+			</li>
 		</a>
 	</ul>
 	
 	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
-	  	
+	 	
 	<!-- 翻页 -->
-	<div align="center">
+	<div class="Paginate">
 		<%= paginate @events %>
 	</div>
 	
