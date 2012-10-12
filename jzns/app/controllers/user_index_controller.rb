@@ -41,28 +41,35 @@ class UserIndexController < ApplicationController
   	event_id = params[:id]
   	
   	event = CommonEvent.find(event_id)
-  	if !event || event.author_id==@user.id
-  		logger.error("Err, del_common_event failed userid=#{@user.id},eventid=#{event_id}")
-  		
+  	if !event || event.author_id!=@user.id
+  		logger.error("Err, del_common_event CommonEvent.find failed userid=#{@user.id},eventid=#{event_id}")
+  		return redirect_to(:controller=>"user_index",:action => "common_event")		
     end
+    
+    if event.destroy
+    	logger.error("Err, del_common_event CommonEvent.delete failed userid=#{@user.id},eventid=#{event_id}")
+    end
+    
+    redirect_to(:controller=>"user_index",:action => "common_event")
+    
 	end
   
   #公共事件具体的内容
   def common_event_content
   	@event_id = params[:id]
-  	@new_event_content = CommonEventContent.new
-  	
-  	#判断是否通过审核
   	event = CommonEvent.find(@event_id)
-  	if !event || event.is_pass!=1
+  	@new_event_content = CommonEventContent.new  	
+  	
+  	#判断是否作者
+  	@is_author = event.author_id==@user.id 
+  	
+  	#判断是否通过审核，否则只有作者可以看  	
+  	if !event || (event.is_pass!=1 && !@is_author)
   		return redirect_to(:controller=>"user_index",:action => "common_event")
     end
 		  	
   	#判断是否已关注该内容
   	@is_follow = CommonEventFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
-  	
-  	#判断是否作者
-  	@is_author = event.author_id==@user.id
   	
   	@event_contents = CommonEventContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
 

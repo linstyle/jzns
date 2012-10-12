@@ -13,7 +13,7 @@ class AdminController < ApplicationController
   	@select_link = 999
   	@select_admin_class = 901
   	
-	 	@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=2", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)   	
+	 	@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where("is_pass=2").page(params[:page]).per(DataTemplate::PER_EVENT)   	
   
 	end
 	
@@ -32,6 +32,9 @@ class AdminController < ApplicationController
 	#Í¨¹ýÉóºË
 	def ok_verify
 		event_ids = params[:ok_verify_ids]
+		if !event_ids
+			return redirect_to(:controller=>"admin",:action => "index")
+	  end
 		
 		event_ids.each do |event_id|
 			event = CommonEvent.find(event_id)
@@ -49,6 +52,9 @@ class AdminController < ApplicationController
 	#ÉóºËÊ§°Ü
 	def fail_verify
 		event_ids = params[:ok_verify_ids]
+		if !event_ids
+			return redirect_to(:controller=>"admin",:action => "index")
+	  end		
 		
 		event_ids.each do |event_id|
 			event = CommonEvent.find(event_id)
