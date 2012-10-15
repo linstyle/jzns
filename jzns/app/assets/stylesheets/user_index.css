@@ -64,6 +64,8 @@
 .MyEventList
 {
 	margin-bottom:10px;	
+  font: normal 12px/1.667 'Helvetica Neue',Tahoma,Arial;
+  font-family: 'Helvetica Neue',Tahoma,Arial,sans-serif;
 }
 .MyEventList li
 {
@@ -73,8 +75,15 @@
 
 .MyEventList li a
 {
-	display:block;	
+	display:block;		
 }
+
+.MyEventList li a:active
+{
+	color:#551A8B;
+}
+
+
 
 .HeaderLinkSelect
 {

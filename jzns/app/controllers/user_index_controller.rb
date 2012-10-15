@@ -132,16 +132,13 @@ class UserIndexController < ApplicationController
   	@select_down_menu=200
   	@select_my_event=params[:my_event_class].to_i
 
-  	if 201==@select_my_event 		#所有事件
-	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ? ", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)  		
-	 		
-  	elsif 202==@select_my_event	#成功发表
+  	if 201==@select_my_event	#成功发表
 	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=1", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)  		  	
 	 		
-  	elsif 203==@select_my_event	#审核中
+  	elsif 202==@select_my_event	#审核中
 	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=2", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT) 
 	 		 	
-  	elsif 204==@select_my_event	#审核失败
+  	elsif 203==@select_my_event	#审核失败
 	 		@events = CommonEvent.select('id,title,author_nick_name, message_count').order('id desc').where(["`common_events`.`author_id` = ?  and is_pass=0", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)
 	 	
 	 	else

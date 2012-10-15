@@ -1,6 +1,9 @@
 #!/bin/bash
-cp -r /home/lindp/Programmer/GitHub/jzns/jzns /home/lindp/Programmer/Release/
-cd /home/lindp/Programmer/Release/jzns/
+src_path=/home/lindp/Programmer/GitHub/jzns/jzns
+des_path=/home/lindp/Programmer/Release/
+
+cp -r $src_path $des_path
+cd $des_path/jzns/
 
 rm tmp/* -rf
 rm log/* -rf
@@ -11,5 +14,5 @@ day=`date +%d`
 hour=`date +%H`
 min=`date +%M`
 
-release_file_name=jzns-$month-$day-$hour-$min.tar
-tar -cvf /home/lindp/Programmer/Release/$release_file_name /home/lindp/Programmer/Release/jzns/
+release_file_name=jzns$month$day$hour$min.tar
+tar -cvf $des_path/$release_file_name *

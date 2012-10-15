@@ -176,17 +176,22 @@ a:visited是访问过后的情况
 
 a:link  /* 未访问的链接 */
 {
-	text-decoration:none;color:black;
+	text-decoration:none;
 } 
 
 a:visited /* 已访问的链接 */
 {
-	text-decoration:none;color:black;
+	text-decoration:none;
 } 
 
 a:hover  /*鼠标放上去*/
 {
-	text-decoration:none;	color:black;
+	text-decoration:none;	
+}
+
+a:active  /*鼠标点击时*/
+{
+	text-decoration:none;color:black;
 }
 
 /*

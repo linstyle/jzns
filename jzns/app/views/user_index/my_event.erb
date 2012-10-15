@@ -2,37 +2,29 @@
 
 <div class="FMain">
 	<div class="MyEventList">
-	<ul>
+	<ul>	
   <% if 201==@select_my_event %>
-		<li style="font-weight:700;">
+		<li style="font-weight: bold;color:#666;">
 	<% else %>
 		<li>
 	<% end %>
-		<%= link_to('所有事件', :controller => 'user_index', :action => 'my_event',:my_event_class=>"201") %>	
+		<%= link_to('成功发表', :controller => 'user_index', :action => 'my_event',:my_event_class=>"201") %>	
 	</li>	
 	
   <% if 202==@select_my_event %>
-		<li style="font-weight:700;">
+		<li style="font-weight: bold;color:#666;">
 	<% else %>
 		<li>
 	<% end %>
-		<%= link_to('成功发表', :controller => 'user_index', :action => 'my_event',:my_event_class=>"202") %>	
+		<%= link_to('审核中', :controller => 'user_index', :action => 'my_event',:my_event_class=>"202") %>	
 	</li>	
 	
   <% if 203==@select_my_event %>
-		<li style="font-weight:700;">
+		<li style="font-weight: bold;color:#666;">
 	<% else %>
 		<li>
 	<% end %>
-		<%= link_to('审核中', :controller => 'user_index', :action => 'my_event',:my_event_class=>"203") %>	
-	</li>	
-	
-  <% if 204==@select_my_event %>
-		<li style="font-weight:700;">
-	<% else %>
-		<li>
-	<% end %>
-		<%= link_to('审核失败', :controller => 'user_index', :action => 'my_event',:my_event_class=>"204") %>	
+		<%= link_to('审核失败', :controller => 'user_index', :action => 'my_event',:my_event_class=>"203") %>	
 	</li>	
 		
 	</ul>

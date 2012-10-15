@@ -4,7 +4,7 @@
 	<%= form_for @user_setting, :url => { :controller => 'user_index', :action => 'setting_commit'} do |f| %>
 		<ul>
 			<li>
-	  	<span style="display:block">昵称:(10个字符内)</span>
+	  	<span style="display:block">昵称:(8个字符内)</span>
 	  		<%= error_message_on @user, :nick_name %>
 				<%= f.text_field :nick_name, :size => "20x1", :value => "#{@user.nick_name}"%> 				 				
 			</li>
