@@ -4,42 +4,23 @@
   <div class="FMainContent">
 	 	  
     <div class="FNewForm">
-		<%= form_for @user, :url => { :controller => 'welcome', :action => 'create'} do |f| %>
-			<div style="margin-top:130px;margin-left:80px">
-				<ul>
-				<li>								
-				<%= f.label :name, "登陆账号(邮箱,长度32个字符内)" %>
-				<%= error_message_on @user, :name,:class=>"PublicNoticAreaRed"%>
-				<%= f.email_field :name,:class => "txt-ctrl",:length => "50" %> 
-				</li>	
-		 	
-		 	  <li style="margin-top:10px">
-				<%= f.label :name, "密码(长度6-15)" %>
-				<%= error_message_on @user, :password %>
-				<%= f.password_field :password,:class => "txt-ctrl",:length => "50"%>				
-				</li> 
-		
-				<li style="margin-top:10px">
-				<%= f.label :name, "请再确认下密码" %>
-				<%= f.password_field :password_confirmation,:class => "txt-ctrl",:length => "50"%>
-				</li>
-			  
-			  <li style="margin-top:15px">
-			 		过于简单的注册 <%= f.submit "注册" ,:class => "link-btn-dark"%>
-				</li>
-				</ul>
-		 	</div>
-		<% end %>			
+    	<ul style="line-height:25px;margin-left:40px;margin-right:20px;">
+    	<li style="margin-top:160px;">
+    		来关注事件,看集体爆料！
+    	</li>	
+    	    	
+    	<li style="margin-top:20px;">
+    		元芳，这事你怎么看？ 大人，去右边登陆吧。。
+    	</li>
+    	
+    	</ul>
+					
 	  </div> <!-- FLoginform -->
   	
     <div class="FLoginForm">
 			<%= form_for @user, :url => { :controller => 'welcome', :action => 'login'} do |f| %>			
 		 	<div style="margin-top:150px;margin-left:150px">
-			 	<ul>
-			 	<li>
-			 	  <--- 左边这家伙跟我好像。。
-			 	</li>
-			 	
+			 	<ul>			 	
 				<% if flash[:notice] %>
 				<li style="margin-left:40px;margin-top:10px;">
 					<div class="LabelLoginErr PublicNoticAreaRed">
@@ -61,12 +42,12 @@
 			 	
 				<li style="margin-top:25px">
 					<label for="user_password">密码</label>
-					<%= f.password_field :password,:class => "txt-ctrl"%>			 		
+					<%= f.text_field :password,:class => "txt-ctrl"%>			 		
 				</li>
 				
 				<li style="margin-top:15px;margin-left:35px">
 					<%= check_box_tag("remember_me_check", value = "1", checked = true, options = {})%> 记住我一周 
-					<%= f.submit "登陆" ,:class => "link-btn-dark"%>			 	
+					<%= f.submit "一键登陆" ,:class => "link-btn-dark"%>			 	
 				</li>
 				<!--
 				<li style="margin-top:15px;margin-left:35px">

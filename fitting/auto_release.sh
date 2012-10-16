@@ -15,4 +15,5 @@ hour=`date +%H`
 min=`date +%M`
 
 release_file_name=jzns$month$day$hour$min.tar
-tar -cvf $des_path/$release_file_name *
+cd ..
+tar -cvf $des_path/$release_file_name jzns
