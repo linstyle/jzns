@@ -36,9 +36,6 @@
 	</div> <!-- FUserHeader -->	
 	
 <% else %>
-	<div class="FHead">
-	  	<span style="font-size: 24px"><%= link_to '看事儿网', :controller => 'welcome', :action => 'index' %></span>
-	  	<span ><%= link_to '关于', :controller => 'welcome', :action => 'qiuxian' %>
-	</div>
+	<%= render('common/header_nologin') %>
 <% end %>
 

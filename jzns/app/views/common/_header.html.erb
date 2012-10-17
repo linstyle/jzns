@@ -71,8 +71,6 @@
 	</div> <!-- FUserHeader -->	
 	
 <% else %>
-	<div class="FHead">
-	  	<span style="font-size: 24px"><%= link_to '看事儿网', :controller => 'welcome', :action => 'index' %></span>
-	</div>
+	<%= render('common/header_nologin') %>
 <% end %>
 

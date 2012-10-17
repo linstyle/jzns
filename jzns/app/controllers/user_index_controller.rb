@@ -1,11 +1,25 @@
 #encoding:utf-8
 class UserIndexController < ApplicationController
-  before_filter :find_user, :only => [:common_event,:create_common_event,:del_common_event,:common_event_content,:send_common_content,:person_event,:my_event,:my_follow,:my_say,:my_verify,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
+  before_filter :authenticate_user, :only => [:create_common_event,:del_common_event,:send_common_content,:person_event,:my_event,:my_follow,:my_say,:my_verify,:follow_common_event_add,:follow_common_event_cancel,:setting,:setting_commit,:about]
   
-  def find_user
+  before_filter :find_user, :only => [:common_event, :common_event_content]
+  
+  def authenticate_user    
   	@user = User.find_by_id(session[:user_id])
   	if !@user
   		redirect_to(:controller=>"welcome",:action => "index")
+    end
+  end  
+  
+  def find_user
+  	if !session[:user_id]
+  		return
+  	end
+  	
+  	@user = User.find_by_id(session[:user_id])
+  	if !@user
+  		redirect_to(:controller=>"welcome",:action => "index")
+  		#redirect_to root_url
     end
   end  
   
@@ -56,7 +70,16 @@ class UserIndexController < ApplicationController
   
   #公共事件具体的内容
   def common_event_content
+    #公共部分
   	@event_id = params[:id]
+   	@event_contents = CommonEventContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10) 	
+   	
+    if !session[:user_id]
+    	return
+    end   	
+    
+    
+   	#需要登陆部分  	
   	event = CommonEvent.find(@event_id)
   	@new_event_content = CommonEventContent.new  	
   	
@@ -70,8 +93,6 @@ class UserIndexController < ApplicationController
 		  	
   	#判断是否已关注该内容
   	@is_follow = CommonEventFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
-  	
-  	@event_contents = CommonEventContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10)
 
   end  
        

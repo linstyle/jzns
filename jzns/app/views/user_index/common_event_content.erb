@@ -27,6 +27,7 @@ function CheckInputContentLength(Edit, maxlen)
 
 <div class="FMain">  	
 	<!-- 内容显示 -->
+<% if session[:user_id] %>
 	<div class="FUserMessageContent">
 		<!-- 输入内容框 -->		
 	  <%= form_for @new_event_content, :url => { :controller => 'user_index', :html => { :multipart => true }, :action => 'send_common_content', :id=>"#{@event_id}"} do |f| %>			
@@ -56,7 +57,7 @@ function CheckInputContentLength(Edit, maxlen)
 		  	
 		  </div>
 	  <% end %>
-	  
+<% end %>	  
 	  <ul class="FList1">
 	  	<% @event_contents.each do |event_content| %>	
 	  	<li>
