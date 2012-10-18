@@ -43,7 +43,7 @@ function CheckInputContentLength(Edit, maxlen)
 <%= render('common/header') %>  <!-- 头部 -->
 
 <div class="FMain">
-	<% if session[:user_id] %>
+	<% if @user %>
 	<ul class="FLabelEvent">
 		<a href="javascript:void(0)" onclick="ShowCreateEventDiag()"> 
 			<li style="height:114px;">
@@ -51,15 +51,8 @@ function CheckInputContentLength(Edit, maxlen)
 			</li>
 		</a>
 	</ul>
-	<% end %>
 	
-	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
-	 	
-	<!-- 翻页 -->
-	<div class="Paginate">
-		<%= paginate @events %>
-	</div>
-	
+		
 	<div id="DPopDiag" class="LabelPopDiag"> 
 		<div class="LabelPopDiagCloseButton"><a href="javascript:void(0)" onclick="HideCreateEventDiag()"> 关闭</a></div> 
 		  <%= form_for @new_common_event, :url => { :controller => 'user_index', :action => 'create_common_event', :id=>"#{@event_id}"} do |f| %>
@@ -79,7 +72,16 @@ function CheckInputContentLength(Edit, maxlen)
 	  
 	</div> 
 	<div id="DPopDiagShade" class="LabelPopDiagShade"></div>	    	
+  <% end %>
   
+  
+	<%= render('common/event_show') %>  <!-- 内容显示块 -->	
+	 	
+	<!-- 翻页 -->
+	<div class="Paginate">
+		<%= paginate @events %>
+	</div>
+	  
 </div>
 
 <%= render('common/footer') %>  <!-- 尾部 -->

@@ -30,20 +30,14 @@ class WelcomeController < ApplicationController
 
 	
 	#注册
-  def create(user)	  
-    if !user
-    	logger.error("welcome:create(user),!user")	
-    	return redirect_to(:action => "index")	
-    end
-
+  def create()	  
+		user = User.new(params[:user])  
 	  #昵称默认用邮箱前缀	 
 	  user.nick_name = /[^@]+/.match(user.name)[0] 
 	  
 	  if user.save
-	  	puts "xxxxxxxxxxxxxxx1"
 	    return login_by_create(user)
 	  else
-	  	puts "xxxxxxxxxxxxxxx2"
 	    return redirect_to(:action => "index")
 	  end
   end
@@ -74,23 +68,17 @@ class WelcomeController < ApplicationController
 	def login_by_hand(user_login, b_remember_me)
 		user = User.find_by_name(user_login.name)
 		
-		if user
-			if user.authenticate(user_login.password) 
-				#记录cook
-				if b_remember_me
-					rember_cook(user)
-				end
+		if user && user.authenticate(user_login.password) 
+			#记录cook
+			if b_remember_me
+				rember_cook(user)
+			end
 				
-				return login_process(user)	
-			else
-				flash[:notice] =  "无效的用户名或密码"
-				redirect_to(:action => "index")
-			end				
+			return login_process(user)	
 		else
-			#自动创建
-			return create(user_login)		
-	  end
-		
+			flash[:notice] =  "无效的用户名或密码"
+			redirect_to(:action => "index")
+		end			
 	end
   
   def login_by_create(user)

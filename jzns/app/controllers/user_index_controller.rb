@@ -25,13 +25,17 @@ class UserIndexController < ApplicationController
   
   ##用户首页ui跳转
   def user_index
-  	redirect_to(:controller=>"user_index",:action => "common_event")
+  	redirect_to(:controller=>"welcome",:action => "index")
+  	#redirect_to(:controller=>"user_index",:action => "common_event")
+  	
   end
   
   #公共事件
   def common_event
-  	@select_link=100
-  	@new_common_event = CommonEvent.new
+    if @user
+  		@select_link=100
+  		@new_common_event = CommonEvent.new
+    end
 
 		@events = CommonEvent.where("is_pass=1").order('id desc').page(params[:page]).per(DataTemplate::PER_EVENT-1)				  	
   end
@@ -74,7 +78,7 @@ class UserIndexController < ApplicationController
   	@event_id = params[:id]
    	@event_contents = CommonEventContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10) 	
    	
-    if !session[:user_id]
+    if !@user
     	return
     end   	
     

@@ -48,7 +48,7 @@ Jzns::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'user_index#common_event'
+   root :to => 'user_index#user_index'
 
   # See how all your routes lay out with "rake routes"
 
