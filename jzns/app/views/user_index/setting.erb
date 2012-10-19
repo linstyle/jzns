@@ -4,9 +4,9 @@
 	<%= form_for @user_setting, :url => { :controller => 'user_index', :action => 'setting_commit'} do |f| %>
 		<ul>
 			<li>
-	  	<span style="display:block">昵称:(8个字符内)</span>
-	  		<%= error_message_on @user, :nick_name %>
+	  	<span style="display:block">昵称:(6个字符内)</span>	  		
 				<%= f.text_field :nick_name, :size => "20x1", :value => "#{@user.nick_name}"%> 				 				
+				<%= error_message_on @user, :nick_name %>
 			</li>
 			
 			<li style="margin-top:15px;">
@@ -15,14 +15,7 @@
 				<%= f.text_area :contact_me, :size => "40x2", :value => "#{@user.contact_me}"%>   				
 			</li>	
 			
-			
-<% if @user.errors.any? %>
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-<% end %>			
+		
 			
 			<li style="margin-top:20px;">
 				<%= f.submit "提交" ,:class => "link-btn-send",:id=>"send_button",:style=>"display:inline"%>							

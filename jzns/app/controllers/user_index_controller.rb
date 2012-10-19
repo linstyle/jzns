@@ -25,9 +25,11 @@ class UserIndexController < ApplicationController
   
   ##用户首页ui跳转
   def user_index
-  	redirect_to(:controller=>"welcome",:action => "index")
-  	#redirect_to(:controller=>"user_index",:action => "common_event")
-  	
+  	if '1'==cookies[:remeber_me_check]
+			return redirect_to(:controller=>"welcome",:action => "login_by_auto")	
+		end
+		
+		redirect_to(:action => "common_event")
   end
   
   #公共事件

@@ -2,10 +2,6 @@
 class WelcomeController < ApplicationController	
   #用户首页
   def index		
-	  if '1'==cookies[:remeber_me_check]
-			return login_by_auto()
-		end
-
 		@user = User.new
   end
   
@@ -30,15 +26,13 @@ class WelcomeController < ApplicationController
 
 	
 	#注册
-  def create()	  
-		user = User.new(params[:user])  
-	  #昵称默认用邮箱前缀	 
-	  user.nick_name = /[^@]+/.match(user.name)[0] 
+  def create()
+		@user = User.new(params[:user])
 	  
-	  if user.save
-	    return login_by_create(user)
+	  if @user.save
+	    return login_by_create(@user)
 	  else
-	    return redirect_to(:action => "index")
+	    return render(:action => "index")
 	  end
   end
   
@@ -50,7 +44,7 @@ class WelcomeController < ApplicationController
 		end
 		
 		session[:user_id] = user.id
-	  redirect_to(:controller=>"user_index",:action => "user_index")
+	  redirect_to(:controller=>"user_index",:action => "common_event")
   end   	
 	
 	#三种登陆方式,最后都调用login_process函数
