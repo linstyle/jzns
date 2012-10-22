@@ -126,14 +126,24 @@
 }
 
 /*点击事件显示的内容页面*/
-.FUserMessageContent 
+.FUserMsgContent 
 {
 	width:630px;
 	height:100%; 
 	margin-left:100px;
 }
 
-.LabelMHead
+.MsgContentList
+{
+	margin-top:30px;	
+}
+.MsgContentList  li
+{
+	padding-bottom:20px;
+}
+
+
+.MsgHead
 {
 	height:50px;
 	width:50px;
@@ -141,7 +151,7 @@
 	background:#FFffFF;
 }
 
-.LabelMContent
+.MsgContent
 {
 	width:570px;
 	float:left;
@@ -150,7 +160,7 @@
 	line-height: 22px;	
 }
 
-.LabelMAttr
+.MsgAttr
 {
 	margin-top:20px;
 	color: #595959;
@@ -158,7 +168,7 @@
 	font: 12px/1.125 Arial,Helvetica,sans-serif;		
 }
 
-.LabelSendMsgResult
+.SendMsgResult
 {
 	width:100%;
 	text-align:center;

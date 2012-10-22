@@ -23,16 +23,16 @@ DROP TABLE IF EXISTS `common_event_contents`;
 CREATE TABLE `common_event_contents` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `event_id` int(10) unsigned DEFAULT NULL COMMENT 'common_events的ID',
-  `user_id` int(10) unsigned NOT NULL,
-  `user_nickname` char(10) COLLATE utf8_unicode_ci NOT NULL,
+  `author_id` int(10) unsigned NOT NULL,
+  `author_nick_name` char(10) COLLATE utf8_unicode_ci NOT NULL,
   `msg_content` char(140) COLLATE utf8_unicode_ci NOT NULL,
-  `insert_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `insert_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `photo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo_content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `common_event_follows` */
 
@@ -54,9 +54,9 @@ CREATE TABLE `common_events` (
   `author_nick_name` char(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '创建者昵称',
   `message_count` int(10) DEFAULT '0' COMMENT '信息条数',
   `is_pass` smallint(1) DEFAULT '2' COMMENT '是否审核通过0:审核失败 1:审核通过 2:审核中',
-  `lastupdate_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `insert_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `person_events` */
 
@@ -93,7 +93,7 @@ CREATE TABLE `users` (
   `lastlogin_time` datetime DEFAULT '2012-08-10 00:00:00' COMMENT '最后登录时间',
   `reg_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '注册(插入)时间',
   PRIMARY KEY (`id`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

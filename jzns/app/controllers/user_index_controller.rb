@@ -94,18 +94,20 @@ class UserIndexController < ApplicationController
   	
   	#判断是否通过审核，否则只有作者可以看  	
   	if !event || (event.is_pass!=1 && !@is_author)
+  		logger.error("Err, common_event_content:content don't verify or exist.userid=#{@user.id},eventid=#{@event_id}")
+  		  		
   		return redirect_to(:controller=>"user_index",:action => "common_event")
     end
 		  	
   	#判断是否已关注该内容
-  	@is_follow = CommonEventFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
+  	@is_follow = CommonEventFollow.where(["author_id=? and event_id=?", @user.id, @event_id]).limit(1)
 
   end  
        
   #关注公共事件
   def follow_common_event_add
   	common_events_follow = CommonEventFollow.new
-  	common_events_follow.user_id = @user.id
+  	common_events_follow.author_id = @user.id
   	common_events_follow.event_id = params[:id]  
  	
 		if !common_events_follow.save
@@ -118,7 +120,7 @@ class UserIndexController < ApplicationController
   #取消关注公共事件
   def follow_common_event_cancel
   	event_id = params[:id]
-   	CommonEventFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
+   	CommonEventFollow.delete_all(:author_id=>@user.id, :event_id=>event_id)
 
    	redirect_to(:action => "common_event_content", :id=>event_id)
   end
@@ -129,8 +131,8 @@ class UserIndexController < ApplicationController
   	@new_common_content = CommonEventContent.new(params[:common_event_content])
   	
   	@new_common_content.event_id = event_id
-  	@new_common_content.user_id = @user.id
-  	@new_common_content.user_nickname = @user.nick_name
+  	@new_common_content.author_id = @user.id
+  	@new_common_content.author_nick_name = @user.nick_name
 
 	  if @new_common_content.save
 	  	flash[:notice] = "消息成功发送"
@@ -178,14 +180,14 @@ class UserIndexController < ApplicationController
   	@select_link=200
   	@select_down_menu=210
   	
- 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,author_nick_name, message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)	 	  	
+ 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,author_nick_name, message_count').order('id desc').where(["`common_event_follows`.`author_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)	 	  	
 	end
 	
 	def my_say
 		@select_link=200
 		@select_down_menu=220
 		
- 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)			
+ 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`author_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)			
   end
   
   #设置
@@ -203,14 +205,23 @@ class UserIndexController < ApplicationController
 				logger.error("Err, setting update_attributes nick_name failed. userid:#{@user.id}")	
 				return render(:action =>"setting")				
 			end
+			
+			#更新common_events表
+			#　result = Product.update_all("price = 1.1*price", "title like '%Java%'")
+			CommonEvent.update_all(["author_nick_name=?",@user_setting.nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
+			
+			#更新common_event_contents表
+			CommonEventContent.update_all(["author_nick_name=?",@user_setting.nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
+									
 	  end
 		 
-		if @user.contact_me != @user_setting.contact_me
-			if !@user.update_attributes(:contact_me=>@user_setting.contact_me)
-				logger.error("Err, setting update_attributes contact_me failed. userid:#{@user.id}")	
-				return render(:action =>"setting")
-			end
-	  end
+		#if @user.contact_me != @user_setting.contact_me
+		  #更新user表
+		#	if !@user.update_attributes(:contact_me=>@user_setting.contact_me)
+		#		logger.error("Err, setting update_attributes contact_me failed. userid:#{@user.id}")	
+		#		return render(:action =>"setting")
+		#	end
+	  #end
 
 		redirect_to(:action => "setting")
   end
