@@ -197,22 +197,42 @@ class UserIndexController < ApplicationController
   end
   
   def setting_commit
-		@user_setting = User.new(params[:user])
+    new_nick_name = params[:new_nick_name]
+    old_password = params[:old_password]
+    new_password = params[:new_password]
+    new_password_confirmation = params[:new_password_confirmation]
 		
-		#安全校验注意
-		if @user.nick_name != @user_setting.nick_name
-			if !@user.update_attributes(:nick_name=> @user_setting.nick_name)
+		#改昵称
+		if @user.nick_name != new_nick_name
+			if !@user.update_attributes(:nick_name=> new_nick_name)
 				logger.error("Err, setting update_attributes nick_name failed. userid:#{@user.id}")	
 				return render(:action =>"setting")				
 			end
 			
 			#更新common_events表
 			#　result = Product.update_all("price = 1.1*price", "title like '%Java%'")
-			CommonEvent.update_all(["author_nick_name=?",@user_setting.nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
+			CommonEvent.update_all(["author_nick_name=?",new_nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
 			
 			#更新common_event_contents表
-			CommonEventContent.update_all(["author_nick_name=?",@user_setting.nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
+			CommonEventContent.update_all(["author_nick_name=?",new_nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
 									
+	  end
+	  
+	  #改密码
+	  puts "yyyyyyyyyyy"
+	  puts old_password 
+	  if old_password && new_password && new_password_confirmation
+	  	if @user.authenticate(old_password) 
+	  		@user.password = new_password
+	  		@user.password_confirmation = new_password_confirmation
+	  	
+				if !@user.update_attributes(:password=>new_password)
+					logger.error("Err, setting update_attributes password failed. userid:#{@user.id}")	
+					return render(:action =>"setting")				
+				end
+			else
+			  flash[:notice]="旧的密码不正确"
+	    end
 	  end
 		 
 		#if @user.contact_me != @user_setting.contact_me

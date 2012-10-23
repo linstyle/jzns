@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
 	validates_length_of :contact_me, :maximum => 48, :message => "长度在48个字符内"
 	
 	#密码(password)
-	validates_presence_of :password, :on => :create, :message => "密码不能为空"
-	validates_length_of :password, :on => :create, :in => 6..15, :message => "密码长度在6-15"	
-	validates_confirmation_of :password,:on => :create, :message => "两次输入密码不一致"	
+	validates_presence_of :password, :on=>:create, :message => "密码不能为空"
+	validates_length_of :password, :on=>:create,:in => 6..15, :message => "密码长度在6-15"	
+	validates_confirmation_of :password,:on=>:create, :message => "两次输入密码不一致"	
  	
  	has_secure_password
  	#确认两次是否一样  

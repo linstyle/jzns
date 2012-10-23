@@ -1,31 +1,26 @@
 <%= render('common/header') %>  <!-- 头部 -->
 
 <div class="FMain">  	  	
-	<%= form_for @user_setting, :url => { :controller => 'user_index', :action => 'setting_commit'} do |f| %>
-		<ul>
-			<li>
-	  	<span style="display:block">昵称:(6个字符内)</span>	  		
-				<%= f.text_field :nick_name, :size => "20x1", :value => "#{@user.nick_name}"%> 				 				
+	<%= form_tag(:controller => 'user_index', :action => 'setting_commit') do %>
+		<ul style="text-align:right;margin-right:50%;">
+			<li style="display:inline;">
+	  	新昵称(6个字符内)	:  		
+				<%= text_field_tag("new_nick_name", "#{@user.nick_name}",:size => "20x1")%>	 				
 				<%= error_message_on @user, :nick_name %>
 			</li>
-			<!--
-			<li style="margin-top:15px;">
-		  	<span style="display:block">找到我的方式(QQ,微博,邮箱.48个字符内):</span>
-		  	<%= error_message_on @user, :contact_me %> 		
-				<%= f.text_area :contact_me, :size => "40x2", :value => "#{@user.contact_me}"%>   				
-			</li>
-			-->	
 			
-			<li style="margin-top:30px;">
-				旧密码:
-				新密码:
-				再次确认新密码:
+			<li style="margin-top:30px">
+				旧密码:<%= password_field_tag("old_password") %><%= flash[:notice] %></br>	
+				新密码(长度6-15):<%= password_field_tag("new_password") %></br>
+				再次确认新密码:<%= password_field_tag("new_password_confirmation") %>
 			</li>
 		
 			
-			<li style="margin-top:20px;">
-				<%= f.submit "提交" ,:class => "link-btn-send",:id=>"send_button",:style=>"display:inline"%>							
+			<li style="margin-top:20px;width:200px;">			
+				<%= submit_tag "提交" ,:class => "link-btn-dark", :name=>"bt_ok"%>				
 			</li>
+			
+			
 		</ul>				
 	<% end %>			  	
 </div>
