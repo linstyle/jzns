@@ -199,34 +199,30 @@ class UserIndexController < ApplicationController
   def setting_commit
     new_nick_name = params[:new_nick_name]
     old_password = params[:old_password]
-    new_password = params[:new_password]
-    new_password_confirmation = params[:new_password_confirmation]
+    new_password = params[:password]
+    new_password_confirmation = params[:password_confirmation]
 		
 		#改昵称
 		if @user.nick_name != new_nick_name
-			if !@user.update_attributes(:nick_name=> new_nick_name)
-				logger.error("Err, setting update_attributes nick_name failed. userid:#{@user.id}")	
-				return render(:action =>"setting")				
-			end
-			
-			#更新common_events表
-			#　result = Product.update_all("price = 1.1*price", "title like '%Java%'")
-			CommonEvent.update_all(["author_nick_name=?",new_nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
-			
-			#更新common_event_contents表
-			CommonEventContent.update_all(["author_nick_name=?",new_nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
-									
+			if @user.update_attributes(:nick_name=> new_nick_name)
+				#更新common_events表
+				#　result = Product.update_all("price = 1.1*price", "title like '%Java%'")
+				CommonEvent.update_all(["author_nick_name=?",new_nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
+				
+				#更新common_event_contents表
+				CommonEventContent.update_all(["author_nick_name=?",new_nick_name], ["author_id=? and datediff( current_timestamp(),insert_time )<5",@user.id])
+			else
+				logger.error("Err, setting update_attributes nick_name failed. userid:#{@user.id}")
+			end						
 	  end
 	  
 	  #改密码
-	  puts "yyyyyyyyyyy"
-	  puts old_password 
-	  if old_password && new_password && new_password_confirmation
+	  if old_password!=""
 	  	if @user.authenticate(old_password) 
 	  		@user.password = new_password
-	  		@user.password_confirmation = new_password_confirmation
-	  	
-				if !@user.update_attributes(:password=>new_password)
+	  		@user.password_confirmation = new_password_confirmation	  	 
+	  	  
+				if !@user.update_attributes(:password=>new_password, :password_confirmation=>new_password_confirmation)
 					logger.error("Err, setting update_attributes password failed. userid:#{@user.id}")	
 					return render(:action =>"setting")				
 				end
@@ -243,7 +239,7 @@ class UserIndexController < ApplicationController
 		#	end
 	  #end
 
-		redirect_to(:action => "setting")
+		render(:action => "setting")
   end
   
   #关于

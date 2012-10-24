@@ -21,6 +21,9 @@ gem "dynamic_form"
 # ·­Ò³²å¼þ
 gem "kaminari"
 
+#autolink
+gem 'rinku'
+
 #ubuntu
 gem 'execjs'
 gem 'therubyracer'

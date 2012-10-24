@@ -20,6 +20,11 @@ ul
 	padding:0;margin:0;
 }
 
+p
+{
+	margin:0;
+} 
+
 /*rails 默认的ActionRecord返回错误CSS,覆盖掉*/
 .field_with_errors { display: inline;}
 
@@ -50,6 +55,7 @@ ul
 /*红色提示*/
 .PublicNoticAreaRed
 {
+	color: red;
 	background:#F2DEDE;
 	border-radius: 3px 3px 3px 3px;
 	padding-top:5px;

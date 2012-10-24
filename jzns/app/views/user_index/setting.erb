@@ -2,17 +2,30 @@
 
 <div class="FMain">  	  	
 	<%= form_tag(:controller => 'user_index', :action => 'setting_commit') do %>
-		<ul style="text-align:right;margin-right:50%;">
-			<li style="display:inline;">
-	  	新昵称(6个字符内)	:  		
+		<ul style="text-align:left; margin-right:50%;">
+			<li>	  	
+	  		<p>新昵称(6个字符内):</p>
 				<%= text_field_tag("new_nick_name", "#{@user.nick_name}",:size => "20x1")%>	 				
-				<%= error_message_on @user, :nick_name %>
+				<%= error_message_on @user, :nick_name,:class=>"PublicNoticAreaRed"%>
 			</li>
 			
 			<li style="margin-top:30px">
-				旧密码:<%= password_field_tag("old_password") %><%= flash[:notice] %></br>	
-				新密码(长度6-15):<%= password_field_tag("new_password") %></br>
-				再次确认新密码:<%= password_field_tag("new_password_confirmation") %>
+				<p>旧密码:</p>
+				<%= password_field_tag("old_password") %>
+				<% if flash[:notice] %>
+					<div class="PublicNoticAreaRed" style="display:inline;"><%= flash[:notice] %></div>
+				<% end %>
+				</br>
+				
+				
+				<p>新密码(长度6-15):</p>
+				<%= password_field_tag("password") %>
+				<%= error_message_on @user, :password %>
+				</br>
+				
+				<p>再次确认新密码:</p>
+				<%= password_field_tag("password_confirmation") %>
+				
 			</li>
 		
 			
