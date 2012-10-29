@@ -9,7 +9,7 @@ function CheckInputContentLength(Edit, maxlen)
 		document.getElementById('send_button').className="link-btn-disable"
 		document.getElementById('content_notic').innerHTML = "已经超出";
 		
-		document.getElementById('content_remaining').innerHTML = Edit.value.length-100;
+		document.getElementById('content_remaining').innerHTML = Edit.value.length-200;
 	}
 	else
 	{
@@ -35,11 +35,11 @@ function CheckInputContentLength(Edit, maxlen)
 				<li>		
 					<%= f.submit "发布" ,:disabled=>true,:class => "link-btn-disable",:id=>"send_button",:style=>"display:inline;"%>				
 				<span id="content_notic">还可输入</span>
-				<span id="content_remaining" style="font-weight:bold">140</span>字			
+				<span id="content_remaining" style="font-weight:bold">200</span>字			
 				</li>	
 				
 				<li>
-					<%= f.text_area :msg_content, :size => "87x4",:onkeydown=>"CheckInputContentLength(this, 140);",:onkeyup=>"CheckInputContentLength(this, 140);"%>			
+					<%= f.text_area :msg_content, :size => "100x4",:class=>"MsgInput",:onkeydown=>"CheckInputContentLength(this, 200);",:onkeyup=>"CheckInputContentLength(this, 200);"%>			
 				</li>	
 				
 				<li>
@@ -74,7 +74,20 @@ function CheckInputContentLength(Edit, maxlen)
 					<% end %>
 					
 					<div class="MsgAttr">
-						<%= event_content.insert_time.strftime("%D %R") %>
+						<ul>													
+							<li>
+								<% if event_content.insert_time %>
+									<%= event_content.insert_time.strftime("%D %R") %>
+								<% end %>							
+							</li>
+	
+							<li style="margin-left:10px" >
+								<% if @user &&true==@user.is_pm %>
+								  	<%= link_to('删除',:controller => 'admin', :action => 'del_common_event_content', :event_id=>"#{@event_id}", :content_id=>"#{event_content.id}") %>									  
+							  <% end %>							
+							</li>						
+						</ul>
+
 					</div>
 					
 				</div>

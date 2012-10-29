@@ -17,5 +17,5 @@ class CommonEventContent < ActiveRecord::Base
   attr_accessible :msg_content
 	#content
 	validates_presence_of :msg_content, :message => "发送内容不能为空"
-	validates_length_of :msg_content, :maximum => 140, :message => "内容不能超过140个字"
+	validates_length_of :msg_content, :maximum => 200, :message => "内容不能超过200个字"
 end

@@ -133,15 +133,24 @@
 	margin-left:100px;
 }
 
+.MsgInput
+{
+	font-size: 14px;
+	line-height: 18px;
+	font-family: Tahoma,"SimSun";	
+}
+
 .MsgContentList
 {
+	width:630px;
 	margin-top:30px;	
+	margin:0 auto;
 }
+
 .MsgContentList  li
 {
 	padding-bottom:20px;
 }
-
 
 .MsgHead
 {
@@ -168,9 +177,20 @@
 	font: 12px/1.125 Arial,Helvetica,sans-serif;		
 }
 
+.MsgAttr li
+{
+	float:left;	
+}
+
+.MsgAttr li a
+{
+	color: #595959;
+}
+
+
 .SendMsgResult
 {	
 	width:100%;
 	text-align:center;
-	
+	margin-bottom:10px;
 }

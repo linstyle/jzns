@@ -68,5 +68,14 @@ class AdminController < ApplicationController
 		end
 		redirect_to(:controller=>"admin",:action => "index")
   end  
+  
+  #删除事件里面的内容
+  def del_common_event_content
+	  event_id = params[:event_id]
+	  content_id = params[:content_id]
+	   
+		CommonEventContent.update_all(["is_del=true"], ["id=?", content_id])
+		redirect_to(:controller=>"user_index", :action => "common_event_content", :id=>event_id)
+  end
 
 end

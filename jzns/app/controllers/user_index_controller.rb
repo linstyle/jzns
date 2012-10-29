@@ -78,7 +78,7 @@ class UserIndexController < ApplicationController
   def common_event_content
     #公共部分
   	@event_id = params[:id]
-   	@event_contents = CommonEventContent.where(["event_id=?", @event_id]).order('id desc').page(params[:page]).per(10) 	
+   	@event_contents = CommonEventContent.where(["event_id=? and is_del!=true", @event_id]).order('id desc').page(params[:page]).per(10) 	
    	
     if !@user
     	return
@@ -100,14 +100,14 @@ class UserIndexController < ApplicationController
     end
 		  	
   	#判断是否已关注该内容
-  	@is_follow = CommonEventFollow.where(["author_id=? and event_id=?", @user.id, @event_id]).limit(1)
+  	@is_follow = CommonEventFollow.where(["user_id=? and event_id=?", @user.id, @event_id]).limit(1)
 
   end  
        
   #关注公共事件
   def follow_common_event_add
   	common_events_follow = CommonEventFollow.new
-  	common_events_follow.author_id = @user.id
+  	common_events_follow.user_id = @user.id
   	common_events_follow.event_id = params[:id]  
  	
 		if !common_events_follow.save
@@ -120,7 +120,7 @@ class UserIndexController < ApplicationController
   #取消关注公共事件
   def follow_common_event_cancel
   	event_id = params[:id]
-   	CommonEventFollow.delete_all(:author_id=>@user.id, :event_id=>event_id)
+   	CommonEventFollow.delete_all(:user_id=>@user.id, :event_id=>event_id)
 
    	redirect_to(:action => "common_event_content", :id=>event_id)
   end
@@ -180,14 +180,14 @@ class UserIndexController < ApplicationController
   	@select_link=200
   	@select_down_menu=210
   	
- 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,author_nick_name, message_count').order('id desc').where(["`common_event_follows`.`author_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)	 	  	
+ 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,author_nick_name, message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)	 	  	
 	end
 	
 	def my_say
 		@select_link=200
 		@select_down_menu=220
 		
- 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`author_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)			
+ 		@events = CommonEvent.joins(:CommonEventFollow).select('id,title,message_count').order('id desc').where(["`common_event_follows`.`user_id` = ?", @user.id]).page(params[:page]).per(DataTemplate::PER_EVENT)			
   end
   
   #设置

@@ -55,8 +55,10 @@ class WelcomeController < ApplicationController
 		user_fromcookies = User.find_by_id( cookies[:remember_me_id] )
 
 		if user_fromcookies && Digest::SHA1.hexdigest( user_fromcookies.name )[3,18] == cookies[:remember_me_code]
-			login_process(user_fromcookies)			
+			return login_process(user_fromcookies)			
 		end	
+		
+		redirect_to(:action => "index")
   end
   	
 	def login_by_hand(user_login, b_remember_me)
