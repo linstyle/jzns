@@ -1,10 +1,33 @@
+<script language="javascript">   
+function ShowDeleteDiag()
+{ 
+	var diag=document.getElementById('DPopDiag'); 
+	var shade=document.getElementById('DPopDiagShade'); 
+	diag.style.display='block'; 
+	shade.style.display='block'; 
+} 
+
+function HideDeleteDiag()
+{ 
+	var diag=document.getElementById('DPopDiag'); 
+	var shade=document.getElementById('DPopDiagShade'); 
+	diag.style.display='none'; 
+	shade.style.display='none'; 
+} 
+
+
+</script> 
+
 <% if @user %>
 	<div class="FUserHeader">		
 		<div class="FUserHeaderList">	
 			<ul>
 				<li style="margin-left:0px">
 					<% if @is_author %>
-						<%= link_to('删除事件',:controller => 'user_index', :action => 'del_common_event', :id=>"#{@event_id}") %>
+						<a href="javascript:void(0)" onclick="ShowDeleteDiag()"> 
+								删除事件
+						</a>
+		
 					<% else %>
 						<% if @is_follow.size!=0 %>
 							<%= link_to('取消关注',:controller => 'user_index', :action => 'follow_common_event_cancel', :id=>"#{@event_id}") %>
@@ -35,7 +58,16 @@
 	  </div> <!-- FUserHeaderList -->
 	</div> <!-- FUserHeader -->	
 	
+	<div id="DPopDiag" class="LabelPopDiag"> 
+		<div class="LabelPopDiagCloseButton"></div>		
+			<%= link_to('确认删除',:controller => 'user_index', :action => 'del_common_event', :id=>"#{@event_id}") %>
+			
+			<a href="javascript:void(0)" onclick="HideDeleteDiag()"> 取消删除</a>									  
+	</div> 
+	<div id="DPopDiagShade" class="LabelPopDiagShade"></div>	 
+		
 <% else %>
 	<%= render('common/header_nologin') %>
 <% end %>
+
 
